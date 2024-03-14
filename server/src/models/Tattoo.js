@@ -26,8 +26,8 @@ export const TattooSchema = new Schema({
         default: 640
     }
 },
-{
-    timestamps: true,
-    toJSON: {virtuals: true}
-}
+    {
+        timestamps: true,
+        toJSON: { virtuals: true }
+    }
 )
