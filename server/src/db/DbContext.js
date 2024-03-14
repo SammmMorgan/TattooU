@@ -7,7 +7,7 @@ class DbContext {
   Values = mongoose.model('Value', ValueSchema);
   Account = mongoose.model('Account', AccountSchema);
   
-  Tattoo = mongoose.model('Design', TattooSchema)
+  Design = mongoose.model('Design', TattooSchema)
 }
 
 export const dbContext = new DbContext()
