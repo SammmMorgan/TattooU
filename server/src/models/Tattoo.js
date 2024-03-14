@@ -5,6 +5,11 @@ export const TattooSchema = new Schema({
         type: Schema.ObjectId,
         required: true,
     },
+    tag: {
+        type: String,
+        enum: ['male', 'female', 'blackandgrey', 'color', 'sleeve', 'tribal', 'blackwork', 'chicano', 'dotwork', 'fineline', 'geometric', 'handpoked', 'darkart', 'japanese', 'lettering', 'neo', 'newschool', 'ornamental', 'realism', 'illustrative', 'oldschool', 'trashpolka', 'watercolor', 'surrealism', 'cosmetic', 'additional', 'chest', 'stomach', 'back', 'head', 'forearm', 'upperarm', 'legs', 'hand'],
+        required: true,
+    },
     name: {
         type: String,
         required: true,
@@ -30,8 +35,8 @@ export const TattooSchema = new Schema({
         default: 640
     }
 },
-{
-    timestamps: true,
-    toJSON: {virtuals: true}
-}
+    {
+        timestamps: true,
+        toJSON: { virtuals: true }
+    }
 )
