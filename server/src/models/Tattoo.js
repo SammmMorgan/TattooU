@@ -1,14 +1,6 @@
 import { Schema } from "mongoose";
 
 export const TattooSchema = new Schema({
-    id: {
-        type: Schema.ObjectId,
-        required: true,
-    },
-    tag: {
-        type: String,
-        required: true,
-    },
     name: {
         type: String,
         required: true,
