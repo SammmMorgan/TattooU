@@ -1,20 +1,27 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column">
-    <div>
-      <Login />
+  <div class="container-fluid home">
+    <div class="row">
+      <div class="col-12">
+        <Login />
+      </div>
     </div>
-    <div class="container-fluid">
-      <section class="row">
-        <div class="col-12 justify-content-center d-flex">
-          <img src="../assets/img/ff5fa50773f34d47537a05ee1d376bf8.png" alt="CodeWorks Logo" class="mt-5 home-card">
-        </div>
-      </section>
-    </div>
+    <section class="row">
+      <div class="col-12 justify-content-center d-flex gradient">
+        <img src="../assets/img/ff5fa50773f34d47537a05ee1d376bf8.png" alt="CodeWorks Logo" class="mt-5 home-card">
+      </div>
+    </section>
   </div>
-  <div class="gradient">
-  </div>
-  <div class="buttons">
-
+  <div class="ad-text container-fluid">
+    <section class="row">
+      <div class="col-12 justify-content-between d-flex ">
+        <img src="src\assets\img\efd39f25f6090206a1a549861dd52273.png" alt="" class="content-img ">
+        <p class="text-white fs-1 text-center flavor-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Quia
+          reprehenderit similique
+          ducimus magnam sit
+          possimus aspernatur nisi fuga corrupti assumenda.</p>
+      </div>
+    </section>
   </div>
   <div class="gallery">
 
@@ -33,13 +40,13 @@ export default {
 
 <style scoped lang="scss">
 .home {
-  height: 100vh;
   user-select: none;
   background-image: url(../assets/img/1b63c07362e3fbafb0425f6bfaf76014.png);
-  object-position: center;
+
+  min-height: 100dvh;
 
   .home-card {
-    width: clamp(400px, 50vw, 100%);
+    // width: clamp(400px, 50vw, 100%);
     object-fit: cover;
     z-index: 999;
   }
@@ -51,15 +58,18 @@ export default {
   height: 500px;
   width: 100%;
   position: absolute;
-  top: 42vh;
+  top: 50vh;
   right: 0;
   left: 0;
 
 }
 
-//     >img {
-//       height: 200px;
-//       max-width: 200px;
-//       width: 100%;
-//       margin-top: 10vh;
-//       object-fit: contain;</style>
+.ad-text {
+  background-color: black;
+}
+
+.content-img {
+  width: 45vh;
+  height: 35dvh;
+}
+</style>
