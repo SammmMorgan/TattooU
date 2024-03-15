@@ -2,13 +2,15 @@ import { dbContext } from "../db/DbContext.js"
 import { BadRequest, Forbidden } from "../utils/Errors.js"
 
 class CollectionService {
+
     async getAllCollections() {
-        const collections = await dbContext.Collections.find().populate('creator')
+        const collections = await dbContext.Collections.find().populate('creator').populate('imageCount')
         return collections
     }
     async createCollection(data) {
         const collection = await dbContext.Collections.create(data)
         await collection.populate('creator')
+        await collection.populate('imageCount')
         return collection
     }
     
@@ -34,7 +36,6 @@ class CollectionService {
         await collection.deleteOne()
         return `Collection Deleted`
     }
-    
 }
 
 export const collectionService = new CollectionService()

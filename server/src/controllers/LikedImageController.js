@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Auth0Provider } from "@bcwdev/auth0provider";
 import BaseController from "../utils/BaseController.js";
 import { likeService } from "../services/LikeService.js";
@@ -8,7 +9,7 @@ export class LikedImageController extends BaseController {
         this.router
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createLike)
-            .delete('', this.deleteLike)
+            .delete('/:likeId', this.deleteLike)
     }
     
       /**
@@ -22,7 +23,7 @@ export class LikedImageController extends BaseController {
         try {
             const data = request.body
             // @ts-ignore
-            data.collectionId = request.userInfo.id
+            data.accountId = request.userInfo.id
             const like = await likeService.createLike(data)
             response.send(like)
         } catch (error) {
@@ -38,7 +39,10 @@ export class LikedImageController extends BaseController {
    */
     async deleteLike(request, response, next) {
         try {
-            
+            const id = request.params.likeId
+            const userId = request.userInfo.id
+            const message = await likeService.deleteLike(id, userId)
+            response.send(message)
         } catch (error) {
             next(error)
         }

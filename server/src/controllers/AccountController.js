@@ -1,6 +1,8 @@
 import { Auth0Provider } from '@bcwdev/auth0provider'
 import { accountService } from '../services/AccountService'
 import BaseController from '../utils/BaseController'
+import { collectionService } from '../services/CollectionService.js'
+import { likeService } from '../services/LikeService.js'
 
 export class AccountController extends BaseController {
   constructor() {
@@ -9,6 +11,7 @@ export class AccountController extends BaseController {
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getUserAccount)
       .put('', this.editUserAccount)
+      .get('/likes', this.getAccountCollections)
   }
 
   async getUserAccount(req, res, next) {
@@ -28,6 +31,16 @@ export class AccountController extends BaseController {
       res.send(account)
     } catch (error) {
       next(error)
+    }
+  }
+  
+  async getAccountCollections(request, response, next) {
+    try {
+        const userId = request.userInfo.id
+        const collections = await likeService.getAccountCollections(userId)
+        response.send(collections)
+    } catch (error) {
+        next(error)
     }
   }
   
