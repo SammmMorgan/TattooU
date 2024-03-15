@@ -1,5 +1,6 @@
 <template>
   <div class="container-fluid home">
+    <img src="../assets/img/ff5fa50773f34d47537a05ee1d376bf8.png" alt="CodeWorks Logo" class="mt-5 home-card">
     <div class="row">
       <div class="col-12">
         <Login />
@@ -7,7 +8,6 @@
     </div>
     <section class="row">
       <div class="col-12 justify-content-center d-flex gradient">
-        <img src="../assets/img/ff5fa50773f34d47537a05ee1d376bf8.png" alt="CodeWorks Logo" class="mt-5 home-card">
       </div>
     </section>
   </div>
@@ -47,7 +47,11 @@ export default {
 
   .home-card {
     // width: clamp(400px, 50vw, 100%);
-    object-fit: cover;
+    position: absolute;
+    height: 100vh;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     z-index: 999;
   }
 }
