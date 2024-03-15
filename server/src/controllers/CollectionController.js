@@ -7,9 +7,11 @@ export class CollectionController extends BaseController {
         super('api/collections')
         this.router
             .get('', this.getAllCollections)
-            .get('', this.getCollectionById)
+            .get('/:collectionId', this.getCollectionById)
             .use(Auth0Provider.getAuthorizedUserInfo)
-            .post('/:collectionId', this.createCollection)
+            .post('', this.createCollection)
+            .put('/:collectionId', this.updateCollection)
+            .delete('/:collectionId', this.deleteCollection)
     }
     
      /**
@@ -58,6 +60,45 @@ export class CollectionController extends BaseController {
             const id = request.params.collectionId
             const collection = await collectionService.getCollectionById(id)
             response.send(collection)
+        } catch (error) {
+            next(error)
+        }
+     }
+     
+        /**
+   * Sends all values back to the client
+   * @param {import("express").Request} request
+   * @param {import("express").Response} response
+   * @param {import("express").NextFunction} next
+   */
+     
+     async updateCollection(request, response, next) {
+        try {
+            const id = request.params.collectionId
+            const data = request.body
+            // @ts-ignore
+            const userId = request.userInfo.id
+            const collection = await collectionService.updateCollection(id, data, userId)
+            response.send(collection)
+        } catch (error) {
+            next(error)
+        }
+     }
+     
+     
+    /**
+   * Sends all values back to the client
+   * @param {import("express").Request} request
+   * @param {import("express").Response} response
+   * @param {import("express").NextFunction} next
+   */
+     async deleteCollection(request, response, next) {
+        try {
+            const id = request.params.collectionId
+            // @ts-ignore
+            const userId = request.userInfo.id
+            const message = await collectionService.deleteCollection(id, userId)
+            response.send(message)
         } catch (error) {
             next(error)
         }
