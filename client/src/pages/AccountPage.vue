@@ -2,9 +2,10 @@
   <div class="about text-center">
     <h1>Welcome {{ account.name }}</h1>
     <img class="rounded" :src="account.picture" alt="" />
+    <p>{{ account.bio }}</p>
     <p>{{ account.email }}</p>
   </div>
-  <!-- <div class="container-fluid">
+  <div class="container-fluid">
     <section class="row">
       <div class="col-6 m-auto">
 
@@ -12,31 +13,24 @@
 
           <div class="mb-3">
             <label for="name">Name</label>
-            <input v-model="editableAccountData.name" required class="w-100" type="text" id="name">
+            <input v-model="editableAccountData.name" class="w-100" type="text" id="name">
           </div>
 
-          
           <div class="mb-3">
-            <label for="bio">Bio</label>
-            <textarea v-model="editableAccountData.bio" id="bio" cols="20" class="w-100"></textarea>
+            <label for="name">Bio</label>
+            <input v-model="editableAccountData.bio" class="w-100" type="text" id="bio">
           </div>
-
-
 
           <div class="mb-3">
             <label for="picture">Picture</label>
-            <input v-model="editableAccountData.picture" required class="w-100" type="text" id="picture">
+            <input v-model="editableAccountData.picture" class="w-100" type="text" id="picture">
           </div>
 
-          <div class="mb-3">
-            <label for="coverImg">Cover Image</label>
-            <input v-model="editableAccountData.coverImg" class="w-100" type="text" id="coverImg">
-          </div>
 
 
           <div class="mb-3">
             <label for="email">Email</label>
-            <input v-model="editableAccountData.email" id="email" class="w-100">
+            <input v-model="editableAccountData.email" id="email" type="text" class="w-100">
           </div>
 
 
@@ -46,17 +40,34 @@
 
       </div>
     </section>
-  </div> -->
+  </div>
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { AppState } from '../AppState';
 import { accountService } from '../services/AccountService';
+import Pop from '../utils/Pop';
+
 export default {
   setup() {
+    const account = computed(() => AppState.account)
+    const editableAccountData = ref({})
+
+    watch(account, () => { editableAccountData.value = { ...account.value } }, { immediate: true })
+
+
     return {
-      account: computed(() => AppState.account)
+      editableAccountData,
+      account,
+      async updateAccount() {
+        try {
+          await accountService.updateAccount(editableAccountData.value)
+        } catch (error) {
+          Pop.error(error)
+        }
+      }
+
     }
   }
 }
