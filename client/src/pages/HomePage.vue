@@ -29,8 +29,25 @@
 </template>
 
 <script>
+import { computed, onMounted, ref } from 'vue';
+import Pop from '../utils/Pop.js';
+import { tattoosService } from '../services/TattoosService.js';
+
 export default {
   setup() {
+
+    onMounted(() => {
+      getAllTattoos()
+    })
+
+    async function getAllTattoos() {
+      try {
+        await tattoosService.getAllTattoos()
+      } catch (error) {
+        Pop.error(error)
+      }
+    }
+
     return {
 
     }

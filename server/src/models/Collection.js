@@ -30,3 +30,10 @@ CollectionSchema.virtual('creator', {
     foreignField: '_id',
     justOne: true
 })
+
+CollectionSchema.virtual('imageCount', {
+    localField: '_id',
+    ref: 'Likes',
+    foreignField: 'collectionId',
+    count: true
+})
