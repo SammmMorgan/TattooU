@@ -10,7 +10,7 @@ import { dbContext } from '../db/DbContext'
 async function createAccountIfNeeded(account, user) {
   if (!account) {
     user._id = user.id
-    if(typeof user.name == 'string' && user.name.includes('@')){
+    if (typeof user.name == 'string' && user.name.includes('@')) {
       user.name = user.nickname
     }
     account = await dbContext.Account.create({
@@ -40,7 +40,8 @@ async function mergeSubsIfNeeded(account, user) {
 function sanitizeBody(body) {
   const writable = {
     name: body.name,
-    picture: body.picture
+    picture: body.picture,
+    bio: body.bio
   }
   return writable
 }
@@ -68,6 +69,8 @@ class AccountService {
    *  @param {any} user Auth0 user object
    *  @param {any} body Updates to apply to user object
    */
+
+
   async updateAccount(user, body) {
     const update = sanitizeBody(body)
     const account = await dbContext.Account.findOneAndUpdate(
@@ -77,5 +80,16 @@ class AccountService {
     )
     return account
   }
+
+
+
+
+
+
+
+
+
+
+
 }
 export const accountService = new AccountService()
