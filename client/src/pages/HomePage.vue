@@ -24,7 +24,11 @@
     </section>
   </div>
   <div class="gallery">
-
+    <section class="row">
+      <div v-for="tattoo in tattoos" class="col-4">
+        <img :src="tattoo.fullURL" alt="" class="gallery-tattoo">
+      </div>
+    </section>
   </div>
 </template>
 
@@ -32,7 +36,7 @@
 import { computed, onMounted, ref } from 'vue';
 import Pop from '../utils/Pop.js';
 import { tattoosService } from '../services/TattoosService.js';
-
+import { AppState } from "../AppState.js"
 export default {
   setup() {
 
@@ -49,6 +53,8 @@ export default {
     }
 
     return {
+      tattoos: computed(() => AppState.tattoos)
+
 
     }
   }
@@ -92,5 +98,10 @@ export default {
 .content-img {
   width: 45vh;
   height: 35dvh;
+}
+
+.gallery-tattoo {
+  height: 20vh;
+  aspect-ratio: 1/1;
 }
 </style>
