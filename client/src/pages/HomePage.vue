@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid home">
-    <img src="../assets/img/ff5fa50773f34d47537a05ee1d376bf8.png" alt="CodeWorks Logo" class="mt-5 home-card">
+    <img src="/img/ff5fa50773f34d47537a05ee1d376bf8.png" alt="CodeWorks Logo" class="mt-5 home-card">
     <div class="row">
       <div class="col-12">
         <Login />
@@ -14,7 +14,7 @@
   <div class="ad-text container-fluid">
     <section class="row">
       <div class="col-12 justify-content-between d-flex ">
-        <img src="src\assets\img\efd39f25f6090206a1a549861dd52273.png" alt="" class="content-img ">
+        <img src="/img/efd39f25f6090206a1a549861dd52273.png" alt="" class="content-img ">
         <p class="text-white fs-1 text-center flavor-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit.
           Quia
           reprehenderit similique
@@ -24,7 +24,11 @@
     </section>
   </div>
   <div class="gallery">
-
+    <section class="row">
+      <div v-for="tattoo in tattoos" class="col-4">
+        <img :src="tattoo.fullURL" alt="" class="gallery-tattoo">
+      </div>
+    </section>
   </div>
 </template>
 
@@ -32,7 +36,7 @@
 import { computed, onMounted, ref } from 'vue';
 import Pop from '../utils/Pop.js';
 import { tattoosService } from '../services/TattoosService.js';
-
+import { AppState } from "../AppState.js"
 export default {
   setup() {
 
@@ -49,6 +53,8 @@ export default {
     }
 
     return {
+      tattoos: computed(() => AppState.tattoos)
+
 
     }
   }
@@ -58,7 +64,7 @@ export default {
 <style scoped lang="scss">
 .home {
   user-select: none;
-  background-image: url(../assets/img/1b63c07362e3fbafb0425f6bfaf76014.png);
+  background-image: url(/img/1b63c07362e3fbafb0425f6bfaf76014.png);
 
   min-height: 100dvh;
 
@@ -92,5 +98,10 @@ export default {
 .content-img {
   width: 45vh;
   height: 35dvh;
+}
+
+.gallery-tattoo {
+  height: 20vh;
+  aspect-ratio: 1/1;
 }
 </style>

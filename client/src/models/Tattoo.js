@@ -6,4 +6,11 @@ constructor(data){
     this.createdAt = new Date(data.posted)
 }
 
+get fullURL(){
+    if(this.url.startsWith('https')){
+        return this.url
+    }
+    return 'https://mijntattoo.nl/' + this.url
+}
+
 }

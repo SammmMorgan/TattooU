@@ -1,9 +1,9 @@
 version: '3'
 services:
   app:
-    image: sammmmorgan/TattooU:latest
+    image: sammmmorgan/tattoou:latest
     restart: unless-stopped
     env_file:
-      - TattooU-env
+      - tattoou-env
     ports:
       - "3000:3000"
