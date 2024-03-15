@@ -1,4 +1,10 @@
 <template>
+  <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
+    <div class="d-flex flex-column align-items-center">
+      <h1>Home</h1>
+      <!-- <img alt="logo" src="../assets/img/cw-logo.png" height="45" /> -->
+    </div>
+  </router-link>
   <div class="about text-center">
     <h1>Welcome {{ account.name }}</h1>
     <img class="rounded" :src="account.picture" alt="" />
