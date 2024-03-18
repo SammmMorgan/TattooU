@@ -8,6 +8,10 @@ export const AppState = reactive({
   // @ts-ignore
   account: {},
 
-    /** @type {Tattoo[]} */
-    tattoos: [],
+  /** @type {Tattoo[]} */
+  tattoos: [],
+
+  collections: [],
+
+  likes: []
 })
