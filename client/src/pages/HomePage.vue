@@ -25,8 +25,11 @@
   </div>
   <div class="gallery">
     <section class="row">
-      <div v-for="tattoo in tattoos" class="col-4">
-        <img :src="tattoo.fullURL" alt="" class="gallery-tattoo">
+      <div v-for="tattoo in tattoos" :key="tattoo.id" class="col-md-4 d-flex  justify-content-around">
+        <div>
+          <img :src="tattoo.fullURL" alt="" class="gallery-tattoo w-100">
+          <!-- <button class="position-absolute">❤️</button> -->
+        </div>
       </div>
     </section>
   </div>
@@ -101,7 +104,7 @@ export default {
 }
 
 .gallery-tattoo {
-  height: 20vh;
+  height: 30vh;
   aspect-ratio: 1/1;
 }
 </style>
