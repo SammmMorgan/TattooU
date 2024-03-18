@@ -23,14 +23,12 @@
       </div>
     </section>
   </div>
+
+  <!-- NOTE gallery component abstracted -->
   <div class="gallery bg-black">
     <section class="row">
       <div v-for="tattoo in tattoos" :key="tattoo.id" class="col-4 d-flex  justify-content-around">
-        <div class="position-relative">
-          <button type="button" class="border-0 bg-0 fs-md-1 fs-2 heart-button position-absolute z-1"
-            style="background-color:transparent">🤍</button>
-          <img :src="tattoo.fullURL" alt="" class="gallery-tattoo gallery-tattoo-sm mt-3 mx-3">
-        </div>
+        <TattooCardComponent :tattoo="tattoo" />
       </div>
     </section>
   </div>
@@ -38,9 +36,10 @@
 
 <script>
 import { computed, onMounted, ref } from 'vue';
-import Pop from '../utils/Pop.js';
 import { tattoosService } from '../services/TattoosService.js';
 import { AppState } from "../AppState.js"
+import TattooCardComponent from '../components/TattooCardComponent.vue';
+import Pop from '../utils/Pop.js';
 export default {
   setup() {
 
@@ -61,7 +60,8 @@ export default {
 
 
     }
-  }
+  },
+  components: { TattooCardComponent }
 }
 </script>
 
@@ -103,23 +103,5 @@ export default {
 .content-img {
   width: 45vh;
   height: 35dvh;
-}
-
-.gallery-tattoo {
-  height: 35vh;
-  aspect-ratio: 1/1;
-}
-
-.heart-button {
-  position: absolute;
-  top: 1vh;
-  right: 1vh;
-}
-
-@media (max-width: 768px) {
-  .gallery-tattoo-sm {
-    height: 15vh;
-    aspect-ratio: 1/1;
-  }
 }
 </style>
