@@ -14,12 +14,24 @@ class CollectionService {
 
     }
 
-    async addToCollection(collectionId) {
-        const response = await api.post(`account/collections/${collectionId}/likes`)
-        logger.log('found collection', response.data)
-        AppState.collections.push(new Like(response.data))
 
+    async getCollections() {
+        const response = await api.get('api/collections')
+        logger.log('getting collections', response.data)
+        AppState.collections = response.data.map(collection => new Collection(collection))
     }
+
+    async deleteCollection(collectionId) {
+        const response = await api.delete(`api/collections/${collectionId}`)
+        logger.log('deleted collection')
+    }
+
+    // async addToCollection(collectionId) {
+    //     const response = await api.post(`account/collections/${collectionId}/likes`)
+    //     logger.log('found collection', response.data)
+    //     AppState.collections.push(new Like(response.data))
+
+    // }
 
 
 }
