@@ -23,12 +23,12 @@
       </div>
     </section>
   </div>
-  <div class="gallery">
+  <div class="gallery bg-black">
     <section class="row">
       <div v-for="tattoo in tattoos" :key="tattoo.id" class="col-md-4 d-flex  justify-content-around">
         <div>
-          <img :src="tattoo.fullURL" alt="" class="gallery-tattoo w-100">
-          <!-- <button class="position-absolute">❤️</button> -->
+          <img :src="tattoo.fullURL" alt="" class="gallery-tattoo mt-3 mx-3">
+          <button class="border-0 bg-0 fs-2" style="background-color:transparent">❤️</button>
         </div>
       </div>
     </section>
