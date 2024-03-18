@@ -13,7 +13,7 @@
   </div>
   <div class="ad-text container-fluid">
     <section class="row">
-      <div class="col-12 justify-content-between d-flex ">
+      <div class="col-12 d-none d-md-block justify-content-between d-flex ">
         <img src="/img/efd39f25f6090206a1a549861dd52273.png" alt="" class="content-img ">
         <p class="text-white fs-1 text-center flavor-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit.
           Quia
@@ -25,10 +25,11 @@
   </div>
   <div class="gallery bg-black">
     <section class="row">
-      <div v-for="tattoo in tattoos" :key="tattoo.id" class="col-md-4 d-flex  justify-content-around">
+      <div v-for="tattoo in tattoos" :key="tattoo.id" class="col-4 d-flex  justify-content-around">
         <div>
-          <img :src="tattoo.fullURL" alt="" class="gallery-tattoo mt-3 mx-3">
-          <button class="border-0 bg-0 fs-2" style="background-color:transparent">❤️</button>
+          <img :src="tattoo.fullURL" alt="" class="gallery-tattoo gallery-tattoo-sm mt-3 mx-3">
+          <button type="button" class="border-0 bg-0 fs-2  position-absolute bottom-50 end-50"
+            style="background-color:transparent">❤️</button>
         </div>
       </div>
     </section>
@@ -104,7 +105,14 @@ export default {
 }
 
 .gallery-tattoo {
-  height: 30vh;
+  height: 35vh;
   aspect-ratio: 1/1;
+}
+
+@media (max-width: 768px) {
+  .gallery-tattoo-sm {
+    height: 15vh;
+    aspect-ratio: 1/1;
+  }
 }
 </style>
