@@ -5,10 +5,12 @@
     Login
   </button>
   <div v-else>
-    <div class="dropdown my-2 pt-5 pe-5 my-lg-0 account-pic">
-      <div type="button" class=" selectable no-select text-end  " data-bs-toggle="dropdown" aria-expanded="false">
+    <div class="my-2 pt-5 pe-5   ">
+      <div type="button" class="selectable no-select text-end dropdown " data-bs-toggle="dropdown"
+        aria-expanded="false">
         <div v-if="account.picture || user.picture">
-          <img :src="account.picture || user.picture" alt="account photo" class="rounded fs-1 " />
+          <img :src="account.picture || user.picture" alt="account photo" type="button"
+            class="rounded fs-1 account-picture dropdown " data-bs-toggle="dropdown" aria-expanded="false" />
         </div>
       </div>
       <div class="dropdown-menu dropdown-menu-sm-end dropdown-menu-start p-0" aria-labelledby="authDropdown">
@@ -52,5 +54,6 @@ export default {
 <style lang="scss" scoped>
 .account-picture {
   text-align: end;
+  width: clamp(9vw, 12vw, 15vw);
 }
 </style>
