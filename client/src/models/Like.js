@@ -2,8 +2,8 @@ export class Like {
     constructor(data) {
         this.accountId = data.accountId
         this.collectionId = data.collectionId
-        this.designId = data.designId
-        this.design = data.design
+        this.tattooId = data.tattooId
+        this.tattoo = data.tattoo
         this.collection = data.collection
     }
 }
