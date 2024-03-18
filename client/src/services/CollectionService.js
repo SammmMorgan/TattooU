@@ -13,3 +13,5 @@ class CollectionService {
 
     }
 }
+
+export const collectionService = new CollectionService()
