@@ -26,9 +26,10 @@
   <div class="gallery bg-black">
     <section class="row">
       <div v-for="tattoo in tattoos" :key="tattoo.id" class="col-4 d-flex  justify-content-around">
-        <div>
+        <div class="position-relative">
+          <button type="button" class="border-0 bg-0 fs-md-1 fs-2 heart-button position-absolute z-1"
+            style="background-color:transparent">🤍</button>
           <img :src="tattoo.fullURL" alt="" class="gallery-tattoo gallery-tattoo-sm mt-3 mx-3">
-          <!-- <button type="button" class="border-0 bg-0 fs-2  position-absolute" style="background-color:transparent">❤️</button> -->
         </div>
       </div>
     </section>
@@ -107,6 +108,12 @@ export default {
 .gallery-tattoo {
   height: 35vh;
   aspect-ratio: 1/1;
+}
+
+.heart-button {
+  position: absolute;
+  top: 1vh;
+  right: 1vh;
 }
 
 @media (max-width: 768px) {
