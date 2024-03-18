@@ -1,5 +1,6 @@
 import { AppState } from "../AppState"
 import { Collection } from "../models/Collection"
+import { Like } from "../models/Like"
 import { logger } from "../utils/Logger"
 import { api } from "./AxiosService"
 
@@ -12,6 +13,15 @@ class CollectionService {
         return newCollection
 
     }
+
+    async addToCollection(collectionId) {
+        const response = await api.post(`account/collections/${collectionId}/likes`)
+        logger.log('found collection', response.data)
+        AppState.collections.push(new Like(response.data))
+
+    }
+
+
 }
 
 export const collectionService = new CollectionService()
