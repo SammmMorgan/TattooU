@@ -10,29 +10,31 @@ class CollectionService {
     async createCollection(data) {
         const collection = await dbContext.Collections.create(data)
         await collection.populate('creator')
-        await collection.populate('imageCount')
+        await collection.populate('likedImages')
         return collection
     }
-    
+
     async getCollectionById(id) {
         const collection = await dbContext.Collections.findById(id)
-        if(!collection) throw new Error(`No Collection was found with id ${id}`)
+        if (!collection) throw new Error(`No Collection was found with id ${id}`)
         return collection
     }
-    
+
     async updateCollection(id, data, userId) {
         const collection = await this.getCollectionById(id)
-        if(collection.creatorId != userId) throw new Forbidden('You are not the creator of this collection')
+        if (collection.creatorId != userId) throw new Forbidden('You are not the creator of this collection')
         collection.title = data.name || collection.title
         collection.coverImg = data.coverImg || collection.coverImg
         await collection.save()
         return collection
     }
-    
+
+    async addToCollection(id, data) { }
+
     async deleteCollection(id, userId) {
         const collection = await dbContext.Collections.findById(id)
-        if(!collection) throw new BadRequest(`Invalid id: ${id}`)
-        if(collection.creatorId != userId) throw new Forbidden(`Access Denied`)
+        if (!collection) throw new BadRequest(`Invalid id: ${id}`)
+        if (collection.creatorId != userId) throw new Forbidden(`Access Denied`)
         await collection.deleteOne()
         return `Collection Deleted`
     }

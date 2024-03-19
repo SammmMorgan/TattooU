@@ -4,6 +4,6 @@ export class Collection {
         this.coverImg = data.coverImg
         this.creatorId = data.creatorId
         this.creator = data.creator
-        this.imageCount = data.imageCount
+        this.likedImages = data.likedImages
     }
 }

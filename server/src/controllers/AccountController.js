@@ -2,7 +2,8 @@ import { Auth0Provider } from '@bcwdev/auth0provider'
 import { accountService } from '../services/AccountService'
 import BaseController from '../utils/BaseController'
 import { collectionService } from '../services/CollectionService.js'
-import { likeService } from '../services/LikeService.js'
+import { likedImageService } from '../services/LikedImageService.js'
+import { logger } from '../utils/Logger.js'
 
 export class AccountController extends BaseController {
   constructor() {
@@ -12,6 +13,7 @@ export class AccountController extends BaseController {
       .get('', this.getUserAccount)
       .put('', this.editUserAccount)
       .get('/likes', this.getAccountCollections)
+      .post('/likes', this.createCollection)
   }
 
   async getUserAccount(req, res, next) {
@@ -23,7 +25,7 @@ export class AccountController extends BaseController {
     }
   }
 
-   async editUserAccount(req, res, next) {
+  async editUserAccount(req, res, next) {
     try {
       const accountId = req.userInfo.id
       req.body.id = accountId
@@ -33,15 +35,25 @@ export class AccountController extends BaseController {
       next(error)
     }
   }
-  
+
   async getAccountCollections(request, response, next) {
     try {
-        const userId = request.userInfo.id
-        const collections = await likeService.getAccountCollections(userId)
-        response.send(collections)
+      const userId = request.userInfo.id
+      const collections = await likedImageService.getAccountCollections(userId)
+      response.send(collections)
     } catch (error) {
-        next(error)
+      next(error)
     }
   }
-  
+
+  async createCollection(request, response, next) {
+    try {
+      const userId = request.userInfo.id
+      const likedImgId = request.likedImg
+      const newCollection = await likedImageService.createCollection(userId, likedImgId)
+      response.send(newCollection)
+    } catch (error) {
+      next(error)
+    }
+  }
 }

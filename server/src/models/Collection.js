@@ -2,9 +2,9 @@ import { Schema } from "mongoose";
 
 export const CollectionSchema = new Schema({
     title: {
-        type: String, 
+        type: String,
         required: true,
-        minLength: 3, 
+        minLength: 3,
         maxLength: 25
     },
     coverImg: {
@@ -19,10 +19,10 @@ export const CollectionSchema = new Schema({
         required: true
     }
 },
-{
-    timestamps: true,
-    toJSON: {virtuals: true}
-})
+    {
+        timestamps: true,
+        toJSON: { virtuals: true }
+    })
 
 CollectionSchema.virtual('creator', {
     localField: 'creatorId',
@@ -31,7 +31,7 @@ CollectionSchema.virtual('creator', {
     justOne: true
 })
 
-CollectionSchema.virtual('imageCount', {
+CollectionSchema.virtual('likedImages', {
     localField: '_id',
     ref: 'Likes',
     foreignField: 'collectionId',
