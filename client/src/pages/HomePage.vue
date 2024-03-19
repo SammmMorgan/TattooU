@@ -13,7 +13,7 @@
   </div>
   <div class="ad-text container-fluid">
     <section class="row">
-      <div class="col-12 d-none d-md-block justify-content-between d-flex ">
+      <div class="col-12 d-none d-md-block justify-content-between d-flex">
         <img src="/img/efd39f25f6090206a1a549861dd52273.png" alt="" class="content-img">
         <p class="text-white fs-1 text-center flavor-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit.
           Quia
@@ -77,8 +77,7 @@ export default {
   .home-card {
     // width: clamp(400px, 50vw, 100%);
     position: absolute;
-    width: 100%;
-    height: auto;
+    height: 100vh;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
