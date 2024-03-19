@@ -5,9 +5,9 @@ import { api } from "./AxiosService"
 
 
 class LikeService {
-    async createLike(tattooData) {
+    async createLikedImage(tattooData) {
         const response = await api.post('api/likes', tattooData)
-        logger.log('liked image', response.data)
+        logger.log('liked image to add to or create new collection', response.data)
         AppState.likedImages.push(new LikedImage(response.data))
     }
 }
