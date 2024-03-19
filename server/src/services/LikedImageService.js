@@ -1,7 +1,7 @@
 import { dbContext } from "../db/DbContext.js"
 import { BadRequest, Forbidden } from "../utils/Errors.js"
 
-class LikeService {
+class LikedImageService {
   async createCollection(userId, likedImgId) {
     const newCollection = await dbContext.Collections.create(likedImgId)
     newCollection.populate('creator')
@@ -36,4 +36,4 @@ class LikeService {
 
 }
 
-export const likeService = new LikeService()
+export const likedImageService = new LikedImageService()

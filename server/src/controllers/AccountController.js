@@ -2,7 +2,7 @@ import { Auth0Provider } from '@bcwdev/auth0provider'
 import { accountService } from '../services/AccountService'
 import BaseController from '../utils/BaseController'
 import { collectionService } from '../services/CollectionService.js'
-import { likeService } from '../services/LikeService.js'
+import { likeService } from '../services/LikedImageService.js'
 import { logger } from '../utils/Logger.js'
 
 export class AccountController extends BaseController {
