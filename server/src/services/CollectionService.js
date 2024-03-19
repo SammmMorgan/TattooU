@@ -10,7 +10,7 @@ class CollectionService {
     async createCollection(data) {
         const collection = await dbContext.Collections.create(data)
         await collection.populate('creator')
-        await collection.populate('imageCount')
+        await collection.populate('likedImages')
         return collection
     }
 
@@ -29,7 +29,7 @@ class CollectionService {
         return collection
     }
 
-    async addToCollection() { }
+    async addToCollection(id, data) { }
 
     async deleteCollection(id, userId) {
         const collection = await dbContext.Collections.findById(id)
