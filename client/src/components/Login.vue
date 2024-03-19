@@ -6,11 +6,10 @@
   </button>
   <div v-else>
     <div class="my-2 pt-5 pe-5   ">
-      <div type="button" class="selectable no-select text-end dropdown " data-bs-toggle="dropdown"
-        aria-expanded="false">
+      <div type="button" class="selectable no-select text-end dropdown" data-bs-toggle="dropdown" aria-expanded="false">
         <div v-if="account.picture || user.picture">
           <img :src="account.picture || user.picture" alt="account photo" type="button"
-            class="rounded fs-1 account-picture dropdown " data-bs-toggle="dropdown" aria-expanded="false" />
+            class="rounded fs-1 account-picture" data-bs-toggle="dropdown" aria-expanded="false" />
         </div>
       </div>
       <div class="dropdown-menu dropdown-menu-sm-end dropdown-menu-start p-0" aria-labelledby="authDropdown">
