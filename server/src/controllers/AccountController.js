@@ -13,6 +13,7 @@ export class AccountController extends BaseController {
       .get('', this.getUserAccount)
       .put('', this.editUserAccount)
       .get('/likes', this.getAccountCollections)
+      .post('/likes', this.createCollection)
   }
 
   async getUserAccount(req, res, next) {
@@ -45,4 +46,14 @@ export class AccountController extends BaseController {
     }
   }
 
+  async createCollection(request, response, next) {
+    try {
+      const userId = request.userInfo.id
+      const likedImgId = request.likedImg
+      const newCollection = await likeService.createCollection(userId, likedImgId)
+      response.send(newCollection)
+    } catch (error) {
+      next(error)
+    }
+  }
 }

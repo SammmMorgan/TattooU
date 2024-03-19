@@ -2,12 +2,17 @@ import { dbContext } from "../db/DbContext.js"
 import { BadRequest, Forbidden } from "../utils/Errors.js"
 
 class LikeService {
+  async createCollection(userId, likedImgId) {
+    const newCollection = await dbContext.Collections.create(likedImgId)
+    newCollection.populate('creator')
+    return newCollection
+  }
   async getAccountCollections(userId) {
     const collections = await dbContext.Likes.find({ accountId: userId })
       .populate({
         path: 'collection',
         populate: {
-          path: 'imageCount'
+          path: 'likedImages'
         }
       })
     return collections
