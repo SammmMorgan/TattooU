@@ -5,6 +5,7 @@ export class Account {
     this.name = data.name
     this.picture = data.picture
     this.bio = data.bio
+    this.collections = []
     // TODO add additional properties if needed
   }
 }
