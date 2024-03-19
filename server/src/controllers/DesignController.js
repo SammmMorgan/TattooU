@@ -8,7 +8,7 @@ export class DesignController extends BaseController {
             .get('', this.getAllDesigns)
             .get('/:designId', this.getDesignById)
     }
-    
+
     /**
    * Sends all values back to the client
    * @param {import("express").Request} request
@@ -17,20 +17,21 @@ export class DesignController extends BaseController {
    */
     async getAllDesigns(request, response, next) {
         try {
+            const query = request.query
             const designs = await designService.getAllDesigns()
             response.send(designs)
         } catch (error) {
             next(error)
         }
     }
-    
-     /**
-   * Sends all values back to the client
-   * @param {import("express").Request} request
-   * @param {import("express").Response} response
-   * @param {import("express").NextFunction} next
-   */
-  
+
+    /**
+  * Sends all values back to the client
+  * @param {import("express").Request} request
+  * @param {import("express").Response} response
+  * @param {import("express").NextFunction} next
+  */
+
     async getDesignById(request, response, next) {
         try {
             const id = request.params.designId
@@ -40,6 +41,6 @@ export class DesignController extends BaseController {
             next(error)
         }
     }
-    
-    
+
+
 }
