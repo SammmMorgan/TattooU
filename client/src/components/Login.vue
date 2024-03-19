@@ -1,6 +1,6 @@
 <template>
 
-  <button class="btn selectable text-success lighten-30 text-uppercase my-2 my-lg-0" @click="login"
+  <button class="btn selectable text-success m-5 text-end lighten-30 text-uppercase my-2 my-lg-0" @click="login"
     v-if="!user.isAuthenticated">
     Login
   </button>
