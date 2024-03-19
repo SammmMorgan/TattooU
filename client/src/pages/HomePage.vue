@@ -40,6 +40,7 @@ import { tattoosService } from '../services/TattoosService.js';
 import { AppState } from "../AppState.js"
 import TattooCardComponent from '../components/TattooCardComponent.vue';
 import Pop from '../utils/Pop.js';
+import { logger } from '../utils/Logger.js';
 export default {
   setup() {
 
@@ -50,6 +51,7 @@ export default {
     async function getAllTattoos() {
       try {
         await tattoosService.getAllTattoos()
+
       } catch (error) {
         Pop.error(error)
       }
