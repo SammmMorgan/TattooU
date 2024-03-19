@@ -1,6 +1,6 @@
 import { AppState } from "../AppState"
 import { Collection } from "../models/Collection"
-import { Like } from "../models/Like"
+import { LikedImage } from "../models/LikedImage"
 import { logger } from "../utils/Logger"
 import { api } from "./AxiosService"
 
@@ -26,7 +26,7 @@ class CollectionService {
         logger.log('deleted collection')
     }
 
-    // async addToCollection(collectionId) {
+    // async addToCollection(likedImage) {
     //     const response = await api.post(`account/collections/${collectionId}/likes`)
     //     logger.log('found collection', response.data)
     //     AppState.collections.push(new Like(response.data))
