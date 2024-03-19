@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid home">
+  <!--   <div class="container-fluid home">
     <img src="/img/ff5fa50773f34d47537a05ee1d376bf8.png" alt="CodeWorks Logo" class="mt-5 home-card">
     <div class="row">
       <div class="col-12">
@@ -13,7 +13,7 @@
   </div>
   <div class="ad-text container-fluid">
     <section class="row">
-      <div class="col-12 d-none d-md-block justify-content-between d-flex">
+      <div class="col-12 d-none d-md-block justify-content-between d-flex p-0">
         <img src="/img/efd39f25f6090206a1a549861dd52273.png" alt="" class="content-img">
         <p class="text-white fs-1 text-center flavor-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit.
           Quia
@@ -24,13 +24,29 @@
     </section>
   </div>
 
-  <!-- NOTE gallery component abstracted -->
+ NOTE gallery component abstracted 
+
   <div class="gallery bg-black">
     <section class="row">
-      <div v-for="tattoo in tattoos" :key="tattoo.id" class="col-4 d-flex  justify-content-around">
+      <div v-for="tattoo in tattoos" :key="tattoo.id" class="col-12">
         <TattooCardComponent :tattoo="tattoo" />
       </div>
     </section>
+  </div> -->
+
+  <section class="container-fluid home-background">
+    <div class="row">
+      <img src="/img/ff5fa50773f34d47537a05ee1d376bf8.png" alt="Logo" class="logo">
+    </div>
+    <div class="bg-black"></div>
+  </section>
+
+  <div class="container-fluid black pt-5">
+    <div class="row">
+      <div v-for="tattoo in tattoos" :key="tattoo.id" class="col-md-4">
+        <TattooCardComponent :tattoo="tattoo" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -66,22 +82,37 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.home {
+.home-background {
   user-select: none;
   background-image: url(/img/1b63c07362e3fbafb0425f6bfaf76014.png);
-
   min-height: 100dvh;
-
-  .home-card {
-    // width: clamp(400px, 50vw, 100%);
-    position: absolute;
-    height: 100vh;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 999;
-  }
 }
+
+.home-background:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent 0%, black 100%);
+}
+
+.black {
+  background-color: black;
+}
+
+.logo {
+  // width: clamp(400px, 50vw, 100%);
+  position: absolute;
+  height: 100vh;
+  width: auto;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+}
+
 
 .gradient {
   background: rgb(97, 97, 97);
