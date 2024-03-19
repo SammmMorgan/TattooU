@@ -13,13 +13,13 @@ export class CollectionController extends BaseController {
             .put('/:collectionId', this.updateCollection)
             .delete('/:collectionId', this.deleteCollection)
     }
-    
-     /**
-   * Sends all values back to the client
-   * @param {import("express").Request} request
-   * @param {import("express").Response} response
-   * @param {import("express").NextFunction} next
-   */
+
+    /**
+  * Sends all values back to the client
+  * @param {import("express").Request} request
+  * @param {import("express").Response} response
+  * @param {import("express").NextFunction} next
+  */
     async createCollection(request, response, next) {
         try {
             const data = request.body
@@ -31,31 +31,31 @@ export class CollectionController extends BaseController {
             next(error)
         }
     }
-    
-     /**
-   * Sends all values back to the client
-   * @param {import("express").Request} request
-   * @param {import("express").Response} response
-   * @param {import("express").NextFunction} next
-   */
-  
-     async getAllCollections(request, response, next) {
+
+    /**
+  * Sends all values back to the client
+  * @param {import("express").Request} request
+  * @param {import("express").Response} response
+  * @param {import("express").NextFunction} next
+  */
+
+    async getAllCollections(request, response, next) {
         try {
             const collections = await collectionService.getAllCollections()
             response.send(collections)
         } catch (error) {
             next(error)
         }
-     }
-     
-      /**
-   * Sends all values back to the client
-   * @param {import("express").Request} request
-   * @param {import("express").Response} response
-   * @param {import("express").NextFunction} next
-   */
-     
-     async getCollectionById(request, response, next) {
+    }
+
+    /**
+ * Sends all values back to the client
+ * @param {import("express").Request} request
+ * @param {import("express").Response} response
+ * @param {import("express").NextFunction} next
+ */
+
+    async getCollectionById(request, response, next) {
         try {
             const id = request.params.collectionId
             const collection = await collectionService.getCollectionById(id)
@@ -63,16 +63,16 @@ export class CollectionController extends BaseController {
         } catch (error) {
             next(error)
         }
-     }
-     
-        /**
-   * Sends all values back to the client
-   * @param {import("express").Request} request
-   * @param {import("express").Response} response
-   * @param {import("express").NextFunction} next
-   */
-     
-     async updateCollection(request, response, next) {
+    }
+
+    /**
+* Sends all values back to the client
+* @param {import("express").Request} request
+* @param {import("express").Response} response
+* @param {import("express").NextFunction} next
+*/
+
+    async updateCollection(request, response, next) {
         try {
             const id = request.params.collectionId
             const data = request.body
@@ -83,16 +83,16 @@ export class CollectionController extends BaseController {
         } catch (error) {
             next(error)
         }
-     }
-     
-     
+    }
+
+
     /**
    * Sends all values back to the client
    * @param {import("express").Request} request
    * @param {import("express").Response} response
    * @param {import("express").NextFunction} next
    */
-     async deleteCollection(request, response, next) {
+    async deleteCollection(request, response, next) {
         try {
             const id = request.params.collectionId
             // @ts-ignore
@@ -102,5 +102,16 @@ export class CollectionController extends BaseController {
         } catch (error) {
             next(error)
         }
-     }
+    }
+
+    async addToCollection(request, response, next) {
+        try {
+            const data = request.body
+            data.collectionId = request.collection.id
+            const pictureToAdd = await collectionService.addToCollection(data)
+            response.send(pictureToAdd)
+        } catch (error) {
+            next(error)
+        }
+    }
 }
