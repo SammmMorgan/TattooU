@@ -17,7 +17,6 @@
           </li>
         </ul>
         <!-- LOGIN COMPONENT HERE -->
-        <Login />
       </div>
     </nav>
   </div>
@@ -45,7 +44,7 @@ export default {
       }
     }
   },
-  components: { Login }
+  // components: { Login }
 }
 </script>
 

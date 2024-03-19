@@ -35,6 +35,9 @@
   </div> -->
 
   <section class="container-fluid home-background">
+    <div class="text-end p-5">
+      <Login />
+    </div>
     <div class="row">
       <img src="/img/ff5fa50773f34d47537a05ee1d376bf8.png" alt="Logo" class="logo">
     </div>
@@ -92,7 +95,8 @@ export default {
 .home-background:after {
   content: '';
   position: absolute;
-  top: 0;
+  height: 50vh;
+  top: 50%;
   left: 0;
   right: 0;
   bottom: 0;
