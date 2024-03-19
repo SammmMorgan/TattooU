@@ -13,7 +13,7 @@
   </div>
   <div class="ad-text container-fluid">
     <section class="row">
-      <div class="col-12 d-none d-md-block justify-content-between d-flex ">
+      <div class="col-12 d-none d-md-block justify-content-between d-flex">
         <img src="/img/efd39f25f6090206a1a549861dd52273.png" alt="" class="content-img">
         <p class="text-white fs-1 text-center flavor-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit.
           Quia
@@ -40,6 +40,7 @@ import { tattoosService } from '../services/TattoosService.js';
 import { AppState } from "../AppState.js"
 import TattooCardComponent from '../components/TattooCardComponent.vue';
 import Pop from '../utils/Pop.js';
+import { logger } from '../utils/Logger.js';
 export default {
   setup() {
 
@@ -50,6 +51,7 @@ export default {
     async function getAllTattoos() {
       try {
         await tattoosService.getAllTattoos()
+
       } catch (error) {
         Pop.error(error)
       }
@@ -75,8 +77,7 @@ export default {
   .home-card {
     // width: clamp(400px, 50vw, 100%);
     position: absolute;
-    height: 100%;
-    width: auto;
+    height: 100vh;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);

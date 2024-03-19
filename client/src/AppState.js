@@ -13,5 +13,5 @@ export const AppState = reactive({
 
   collections: [],
 
-  likes: []
+  likedImages: []
 })

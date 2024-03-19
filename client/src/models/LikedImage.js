@@ -1,4 +1,4 @@
-export class Like {
+export class LikedImage {
     constructor(data) {
         this.accountId = data.accountId
         this.collectionId = data.collectionId
