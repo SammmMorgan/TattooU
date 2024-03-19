@@ -41,9 +41,9 @@
     <div class="bg-black"></div>
   </section>
 
-  <div class="container-fluid black pt-5">
+  <div class="container-fluid black pt-5 text-center">
     <div class="row">
-      <div v-for="tattoo in tattoos" :key="tattoo.id" class="col-md-4">
+      <div v-for="tattoo in tattoos" :key="tattoo.id" class="col-md-3">
         <TattooCardComponent :tattoo="tattoo" />
       </div>
     </div>
@@ -51,12 +51,11 @@
 </template>
 
 <script>
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted } from 'vue';
 import { tattoosService } from '../services/TattoosService.js';
 import { AppState } from "../AppState.js"
 import TattooCardComponent from '../components/TattooCardComponent.vue';
 import Pop from '../utils/Pop.js';
-import { logger } from '../utils/Logger.js';
 export default {
   setup() {
 
