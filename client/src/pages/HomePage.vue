@@ -75,8 +75,8 @@ export default {
   .home-card {
     // width: clamp(400px, 50vw, 100%);
     position: absolute;
-    width: 100%;
-    height: auto;
+    height: 100%;
+    width: auto;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
