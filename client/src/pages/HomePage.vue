@@ -66,6 +66,9 @@
       <div v-for="tattoo in tattoos" :key="tattoo.id" class="col-md-3">
         <TattooCardComponent :tattoo="tattoo" />
       </div>
+      <div>
+        <span @click="getMoreImages()" class="text-center text-primary fs-3" type="button">Load more Tats</span>
+      </div>
     </div>
   </div>
 
@@ -125,7 +128,14 @@ export default {
     }
 
     return {
-      tattoos: computed(() => AppState.tattoos)
+      tattoos: computed(() => AppState.tattoos),
+      async getMoreImages() {
+        try {
+
+        } catch (error) {
+          Pop.error(error)
+        }
+      }
 
 
     }
