@@ -59,8 +59,8 @@
 
   <div class="container-fluid black pt-5 text-center py-5">
     <form class="d-flex w-100 justify-content-center py-5" role="search">
-      <input class="form-control me-2 w-50" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success" type="submit">Search</button>
+      <input class="search-input me-2 w-50" type="search" placeholder="Search" aria-label="Search">
+      <button class="search-button" type="submit">Search</button>
     </form>
     <div class="row">
       <div v-for="tattoo in tattoos" :key="tattoo.id" class="col-md-3">
@@ -150,6 +150,42 @@ export default {
   right: 0;
   bottom: 0;
   background: linear-gradient(to bottom, transparent 0%, black 100%);
+}
+
+.search-input {
+  border-bottom: 2px solid white !important;
+  background-color: black;
+  padding: 10px;
+  border: none;
+}
+
+.search-button {
+  padding: 10px;
+  font-family: "Anonymous Pro", monospace;
+  font-weight: 400;
+  background-color: black;
+  border: 2px solid white;
+  border-radius: 16px;
+  font-size: 20px;
+  margin-left: 50px;
+  transition: 0.3s ease-in-out;
+}
+
+.search-button:hover {
+  background-color: white;
+  color: black;
+}
+
+.search-input::placeholder {
+  font-size: 26px;
+  font-style: italic;
+  color: rgb(194, 194, 194);
+  font-family: "Anonymous Pro", monospace;
+  font-weight: 400;
+}
+
+.search-input:focus {
+  outline: none;
 }
 
 .font {
