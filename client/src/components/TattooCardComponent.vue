@@ -46,6 +46,8 @@ img {
     position: absolute;
     top: 0;
     right: 20px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: white;
 }
 
 @media (max-width: 768px) {
