@@ -153,6 +153,8 @@ export default {
       searchQuery,
       editableCollectionData,
       tattoos: computed(() => AppState.tattoos),
+      likedImage: computed(() => AppState.likedImage),
+
       async getMoreImages() {
         try {
 
@@ -161,9 +163,9 @@ export default {
         }
       },
 
-      async createCollection() {
+      async createCollection(likedImage) {
         try {
-          const newCollection = await collectionService.createCollection(editableCollectionData.value)
+          const newCollection = await collectionService.createCollection(editableCollectionData.value, likedImage)
           editableCollectionData.value = { title: '', coverImg: '' }
         } catch (error) {
           Pop.error(error)

@@ -33,7 +33,7 @@ CollectionSchema.virtual('creator', {
 
 CollectionSchema.virtual('likedImages', {
     localField: '_id',
-    ref: 'Likes',
+    ref: 'LikedImages',
     foreignField: 'collectionId',
-    count: true
+    justOne: true
 })

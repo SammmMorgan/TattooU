@@ -8,7 +8,13 @@ class TattoosService {
     const response = await api.get('api/designs', { params: query })
     logger.log('getting tattoos', response.data)
     AppState.tattoos = response.data.designs.map(tattoo => new Tattoo(tattoo))
-    logger.log('mapped tattoos', AppState.tattoos)
+  }
+  setLikedImage(tattooId) {
+    const likedImage = AppState.tattoos.find(tattoo => tattoo.id == tattooId)
+    logger.log(likedImage, 'got it')
+    // @ts-ignore
+    AppState.likedImage = likedImage
+    logger.log(AppState.likedImage, 'appstate liked image')
   }
 
 }
