@@ -157,7 +157,8 @@ export default {
 
       async getMoreImages() {
         try {
-
+          const pageNum = route.query.page || 1
+          router.push({ query: { ...route.query, page: pageNum + 1 } })
         } catch (error) {
           Pop.error(error)
         }
