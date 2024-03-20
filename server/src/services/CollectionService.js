@@ -4,7 +4,7 @@ import { BadRequest, Forbidden } from "../utils/Errors.js"
 class CollectionService {
 
     async getAllCollections() {
-        const collections = await dbContext.Collections.find().populate('creator').populate('imageCount')
+        const collections = await dbContext.Collections.find().populate('creator').populate('likedImages')
         return collections
     }
     async createCollection(data) {
@@ -29,7 +29,11 @@ class CollectionService {
         return collection
     }
 
-    async addToCollection(id, data) { }
+    async addToCollection(data) {
+        const likedImage = await dbContext.LikedImages.create(data)
+        await likedImage.populate('design')
+        await likedImage.populate('collection')
+    }
 
     async deleteCollection(id, userId) {
         const collection = await dbContext.Collections.findById(id)

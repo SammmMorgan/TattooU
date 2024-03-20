@@ -8,12 +8,12 @@ import { LikedImageSchema } from '../models/LikedImage.js';
 class DbContext {
   Values = mongoose.model('Value', ValueSchema);
   Account = mongoose.model('Account', AccountSchema);
-  
+
   Design = mongoose.model('Design', TattooSchema)
-  
+
   Collections = mongoose.model('Collection', CollectionSchema)
-  
-  Likes = mongoose.model('Likes', LikedImageSchema)
+
+  LikedImages = mongoose.model('LikedImages', LikedImageSchema)
 }
 
 export const dbContext = new DbContext()
