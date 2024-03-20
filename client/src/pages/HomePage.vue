@@ -82,15 +82,17 @@
         </div>
         <div class="modal-body">
           <h1>Create a collection</h1>
-          <form>
+
+          <form @submit.prevent="createCollection()">
             <div class="mb-3">
-              <input type="text" class="form-control" placeholder="Name..">
+              <input v-model="editableCollectionData.title" type="text" class="form-control" placeholder="Name..">
             </div>
             <div class="mb-3">
-              <input type="text" class="form-control" placeholder="Cover Image Url...">
+              <input v-model="editableCollectionData.coverImg" type="text" class="form-control"
+                placeholder="Cover Image Url...">
             </div>
             <div class="mb-3 text-end">
-              <button type="button" class="btn btn-success">Create</button>
+              <button type="submit" class="btn btn-success">Create</button>
             </div>
           </form>
 
@@ -106,14 +108,15 @@
 </template>
 
 <script>
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { tattoosService } from '../services/TattoosService.js';
 import { AppState } from "../AppState.js"
 import TattooCardComponent from '../components/TattooCardComponent.vue';
 import Pop from '../utils/Pop.js';
+import { collectionService } from '../services/CollectionService.js';
 export default {
   setup() {
-
+    const editableCollectionData = ref({ title: '', coverImg: '' })
     onMounted(() => {
       getAllTattoos()
     })
@@ -128,6 +131,7 @@ export default {
     }
 
     return {
+      editableCollectionData,
       tattoos: computed(() => AppState.tattoos),
       async getMoreImages() {
         try {
@@ -135,7 +139,17 @@ export default {
         } catch (error) {
           Pop.error(error)
         }
+      },
+
+      async createCollection() {
+        try {
+          const newCollection = await collectionService.createCollection(editableCollectionData.value)
+          editableCollectionData.value = { title: '', coverImg: '' }
+        } catch (error) {
+          Pop.error(error)
+        }
       }
+
 
 
     }

@@ -10,6 +10,7 @@ export class CollectionController extends BaseController {
             .get('/:collectionId', this.getCollectionById)
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createCollection)
+            .post('/:collectionId', this.addToCollection)
             .put('/:collectionId', this.updateCollection)
             .delete('/:collectionId', this.deleteCollection)
     }

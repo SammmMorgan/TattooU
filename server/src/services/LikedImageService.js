@@ -8,7 +8,7 @@ class LikedImageService {
     return newCollection
   }
   async getAccountCollections(userId) {
-    const collections = await dbContext.Likes.find({ accountId: userId })
+    const collections = await dbContext.LikedImages.find({ accountId: userId })
       .populate({
         path: 'collection',
         populate: {
@@ -20,14 +20,14 @@ class LikedImageService {
 
 
   async createLike(data) {
-    const like = await dbContext.Likes.create(data)
+    const like = await dbContext.LikedImages.create(data)
     await like.populate('collection')
     await like.populate('design')
     return like
   }
 
   async deleteLike(id, userId) {
-    const like = await dbContext.Likes.findById(id)
+    const like = await dbContext.LikedImages.findById(id)
     if (!like) throw new BadRequest(`Invalid id: ${id}`)
     if (like.accountId != userId) throw new Forbidden(`Access Denied`)
     await like.deleteOne()
