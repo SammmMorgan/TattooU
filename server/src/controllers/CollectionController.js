@@ -10,7 +10,7 @@ export class CollectionController extends BaseController {
             .get('/:collectionId', this.getCollectionById)
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createCollection)
-            // .post('/:collectionId', this.addToCollection)
+            .post('/:collectionId', this.addToCollection)
             .put('/:collectionId', this.updateCollection)
             .delete('/:collectionId', this.deleteCollection)
     }
@@ -105,14 +105,14 @@ export class CollectionController extends BaseController {
         }
     }
 
-    // async addToCollection(request, response, next) {
-    //     try {
-    //         const data = request.body
-    //         data.collectionId = request.collection.id
-    //         const pictureToAdd = await collectionService.addToCollection(data)
-    //         response.send(pictureToAdd)
-    //     } catch (error) {
-    //         next(error)
-    //     }
-    // }
+    async addToCollection(request, response, next) {
+        try {
+            const data = request.body
+            data.collectionId = request.collection.id
+            const pictureToAdd = await collectionService.addToCollection(data)
+            response.send(pictureToAdd)
+        } catch (error) {
+            next(error)
+        }
+    }
 }
