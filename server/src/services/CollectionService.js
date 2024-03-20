@@ -33,6 +33,7 @@ class CollectionService {
         const likedImage = await dbContext.LikedImages.create(data)
         await likedImage.populate('design')
         await likedImage.populate('collection')
+        return likedImage
     }
 
     async deleteCollection(id, userId) {
