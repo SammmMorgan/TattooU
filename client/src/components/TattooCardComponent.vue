@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-        <img :src="tattoo.fullURL" alt="" class="img-fluid my-3 selectable" data-bs-toggle="modal"
-            data-bs-target="#staticBackdrop">
+        <img @click="setLikedImage(tattoo.id)" :src="tattoo.fullURL" alt="" class="img-fluid my-3 selectable"
+            data-bs-toggle="modal" data-bs-target="#staticBackdrop">
         <!-- <button type="button" class="border-0 bg-0 fs-md-1 fs-2 heart-button z-1"
             style="background-color:transparent">🤍</button> -->
         <span class="mdi mdi-heart heart-button fs-1 "></span>
@@ -11,11 +11,18 @@
 
 <script>
 import { Tattoo } from '../models/Tattoo.js';
+import { tattoosService } from '../services/TattoosService.js';
 
 export default {
     props: { tattoo: { type: Tattoo, required: true } },
     setup() {
-        return {}
+        return {
+            async setLikedImage(tattooId) {
+                const foundTattoo = await tattoosService.setLikedImage(tattooId)
+                return foundTattoo
+            }
+
+        }
     }
 }
 </script>

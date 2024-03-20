@@ -5,13 +5,15 @@ import { logger } from "../utils/Logger"
 import { api } from "./AxiosService"
 
 class CollectionService {
-    async createCollection(collectionData) {
+    async createCollection(collectionData, likedImage) {
         logger.log(collectionData, 'new collection data')
-        // const response = await api.post('api/collections', collectionData)
-        // logger.log('CREATED COLLECTION', response.data)
-        // const newCollection = new Collection(response.data)
-        // AppState.collections.push(newCollection)
-        // return newCollection
+        const response = await api.post('api/collections', collectionData)
+        logger.log('CREATED COLLECTION', response.data)
+        const newCollection = new Collection(response.data)
+        logger.log(newCollection, 'new collection pre-push')
+        newCollection.likedImages.push(likedImage)
+        logger.log(newCollection, 'new collection')
+        return newCollection
 
     }
 
@@ -28,9 +30,9 @@ class CollectionService {
     }
 
     // async addToCollection(likedImage) {
-    //     const response = await api.post(`account/collections/${collectionId}/likes`)
+    //     const response = await api.post(`account/collections/${collectionId}/likedImages`)
     //     logger.log('found collection', response.data)
-    //     AppState.collections.push(new Like(response.data))
+    //     AppState.collections.push(new LikedImage(response.data))
 
     // }
 
