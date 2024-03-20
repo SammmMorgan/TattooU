@@ -58,17 +58,18 @@
   </section>
 
   <div class="container-fluid black pt-5 text-center py-5">
-    <form class="d-flex w-100 justify-content-center py-5" role="search">
-      <input class="search-input me-2 w-50" type="search" placeholder="Search" aria-label="Search">
+    <form @submit.prevent="searchImages()" class="d-flex w-100 justify-content-center py-5 text-white" role="search">
+      <input class="search-input me-2 w-50" type="search" placeholder="Search" v-model="searchQuery.name"
+        aria-label="Search">
       <button class="search-button" type="submit">Search</button>
     </form>
     <div class="row">
       <div v-for="tattoo in tattoos" :key="tattoo.id" class="col-md-3">
         <TattooCardComponent :tattoo="tattoo" />
       </div>
-      <div>
-        <span @click="getMoreImages()" class="text-center text-primary fs-3" type="button">Load more Tats</span>
-      </div>
+    </div>
+    <div>
+      <span @click="getMoreImages()" class="text-center text-primary fs-3" type="button">Load more Tats</span>
     </div>
   </div>
 
@@ -108,29 +109,48 @@
 </template>
 
 <script>
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { tattoosService } from '../services/TattoosService.js';
 import { AppState } from "../AppState.js"
 import TattooCardComponent from '../components/TattooCardComponent.vue';
 import Pop from '../utils/Pop.js';
 import { collectionService } from '../services/CollectionService.js';
+import { logger } from '../utils/Logger.js';
+import { useRoute, useRouter } from 'vue-router';
 export default {
   setup() {
+    const searchQuery = ref({})
+    const route = useRoute()
+    const router = useRouter()
     const editableCollectionData = ref({ title: '', coverImg: '' })
     onMounted(() => {
       getAllTattoos()
     })
-
-    async function getAllTattoos() {
+    async function getAllTattoos(query) {
       try {
-        await tattoosService.getAllTattoos()
+        await tattoosService.getAllTattoos(query)
 
       } catch (error) {
         Pop.error(error)
       }
     }
+    watch(() => route.query, () => {
+      getAllTattoos(route.query)
+    }, { immediate: true })
+
+
+
+
 
     return {
+      async searchImages() {
+        try {
+          router.push({ query: searchQuery.value })
+        } catch (error) {
+          Pop.error(error)
+        }
+      },
+      searchQuery,
       editableCollectionData,
       tattoos: computed(() => AppState.tattoos),
       async getMoreImages() {
@@ -148,8 +168,11 @@ export default {
         } catch (error) {
           Pop.error(error)
         }
-      }
+      },
 
+      changePage(pageNumber) {
+        logger.log('page', pageNumber)
+      }
 
 
     }
@@ -181,6 +204,7 @@ export default {
   background-color: black;
   padding: 10px;
   border: none;
+  color: white;
 }
 
 .search-button {
@@ -193,6 +217,7 @@ export default {
   font-size: 20px;
   margin-left: 50px;
   transition: 0.3s ease-in-out;
+  color: white;
 }
 
 .search-button:hover {

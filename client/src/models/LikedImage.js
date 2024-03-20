@@ -1,5 +1,6 @@
 export class LikedImage {
     constructor(data) {
+        this.name = data.name
         this.accountId = data.accountId
         this.collectionId = data.collectionId
         this.tattooId = data.tattooId

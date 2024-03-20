@@ -13,5 +13,7 @@ export const AppState = reactive({
 
   collections: [],
 
-  likedImages: []
+  likedImages: [],
+
+  total: 0
 })

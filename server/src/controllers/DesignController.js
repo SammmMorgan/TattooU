@@ -18,7 +18,7 @@ export class DesignController extends BaseController {
     async getAllDesigns(request, response, next) {
         try {
             const query = request.query
-            const designs = await designService.getAllDesigns()
+            const designs = await designService.getSearchedDesigns(query)
             response.send(designs)
         } catch (error) {
             next(error)
