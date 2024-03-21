@@ -68,9 +68,9 @@
         <TattooCardComponent :tattoo="tattoo" />
       </div>
     </div>
-    <div>
-      <select v-model="pageNum.num" class="text-center text-primary fs-3" type="button">Load more Tats</select>
-    </div>
+    <button class="btn" @click="pageNum.num++">
+      <span class="text-center text-primary fs-3" type="button">Load more Tats</span>
+    </button>
   </div>
 
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -120,7 +120,7 @@ import { useRoute, useRouter } from 'vue-router';
 export default {
   setup() {
     const searchQuery = ref({ name: '' })
-    const pageNum = ref({ num: '' })
+    const pageNum = ref({ num: 1 })
     const route = useRoute()
     const router = useRouter()
     const editableCollectionData = ref({ title: '', coverImg: '' })
@@ -137,7 +137,9 @@ export default {
     }
     async function getMoreImages() {
       try {
-        await tattoosService.getMoreTats(pageNum)
+        AppState.currentPage = pageNum.value.num
+        logger.log(AppState.currentPage)
+        await tattoosService.getMoreTats({ pageNum })
       } catch (error) {
         Pop.error(error)
       }
@@ -148,7 +150,7 @@ export default {
       getAllTattoos(route.query)
     }, { immediate: true })
 
-    watch(() => AppState.currentPage, () => {
+    watch(() => pageNum, () => {
       getMoreImages()
     }, { immediate: true })
 
@@ -176,7 +178,6 @@ export default {
           Pop.error(error)
         }
       },
-
     }
   },
   components: { TattooCardComponent }
