@@ -25,7 +25,7 @@ class DesignService {
             .find(searchQuery)
             .limit(designLimit)
             .skip(skipNumber)
-            .sort({ name: 'ascending' })
+
 
         const total = await dbContext.Design.countDocuments(queryParam)
 
