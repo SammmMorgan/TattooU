@@ -43,9 +43,19 @@
           <button class="btn btn-success">Update Account</button>
 
         </form>
-
       </div>
     </section>
+
+    <div class="container">
+      <section class="row justify-content-evenly" v-for="collection in collections" :key="collection.id">
+        <div class="col-4">
+          <img :src="collection.coverImg" :alt="collection.title">
+        </div>
+      </section>
+    </div>
+
+    {{ collections }}
+
   </div>
 </template>
 
@@ -66,6 +76,7 @@ export default {
     return {
       editableAccountData,
       account,
+      collections: computed(() => AppState.collections),
       async updateAccount() {
         try {
           await accountService.updateAccount(editableAccountData.value)
