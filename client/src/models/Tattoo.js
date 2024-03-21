@@ -5,6 +5,7 @@ export class Tattoo {
         this.url = data.url
         this.source = data.source
         this.createdAt = new Date(data.posted)
+        this.isLiked = false
     }
 
     get fullURL() {

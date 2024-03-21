@@ -56,14 +56,7 @@
       "panel.border": "#d08dd6",
       "statusBar.debuggingBackground": "#70c868",
       "statusBar.debuggingForeground": "#15202b",
-      "tab.activeBorder": "#d08dd6",
-      "editorError.foreground": "#000000ff",
-      "editorInfo.foreground": "#000000ff",
-      "editorWarning.foreground": "#000000ff",
-      "sideBar.border": "#d08dd6",
-      "statusBar.border": "#c068c8",
-      "statusBar.debuggingBorder": "#70c868",
-      "titleBar.border": "#c068c8"
+      "tab.activeBorder": "#d08dd6"
     },
     "peacock.color": "#c068c8"
   }

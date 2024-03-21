@@ -4,7 +4,8 @@
             data-bs-toggle="modal" data-bs-target="#staticBackdrop">
         <!-- <button type="button" class="border-0 bg-0 fs-md-1 fs-2 heart-button z-1"
             style="background-color:transparent">🤍</button> -->
-        <span class="mdi mdi-heart heart-button fs-1 "></span>
+        <span class="mdi mdi-heart heart-button fs-1" v-if="!tattoo.isLiked"></span>
+        <span class="mdi mdi-heart heart-button-red fs-1" v-if="tattoo.isLiked"></span>
     </div>
 </template>
 
@@ -46,6 +47,15 @@ img {
     position: absolute;
     top: 0;
     right: 20px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: white;
+}
+
+.heart-button-red {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    color: maroon;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: white;
 }

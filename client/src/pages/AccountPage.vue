@@ -1,7 +1,7 @@
 <template>
   <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-    <div class="d-flex flex-column align-items-center">
-      <h1>Home</h1>
+    <div class="d-flex flex-column text-center">
+      <h1>🏡</h1>
       <!-- <img alt="logo" src="../assets/img/cw-logo.png" height="45" /> -->
     </div>
   </router-link>

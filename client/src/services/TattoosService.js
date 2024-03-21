@@ -18,10 +18,9 @@ class TattoosService {
   }
   setLikedImage(tattooId) {
     const likedImage = AppState.tattoos.find(tattoo => tattoo.id == tattooId)
-    logger.log(likedImage, 'got it')
+    likedImage.isLiked = true
     // @ts-ignore
     AppState.likedImage = likedImage
-    logger.log(AppState.likedImage, 'appstate liked image')
   }
 
 }
