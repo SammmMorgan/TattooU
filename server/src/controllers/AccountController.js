@@ -49,10 +49,11 @@ export class AccountController extends BaseController {
 
   async createCollection(request, response, next) {
     try {
-      const userId = request.userInfo.id
-      const likedImgId = request.likedImg
-      const newCollection = await likedImageService.createCollection(userId, likedImgId)
-      response.send(newCollection)
+      const data = request.body
+      // @ts-ignore
+      data.creatorId = request.userInfo.id
+      const collection = await collectionService.createCollection(data)
+      response.send(collection)
     } catch (error) {
       next(error)
     }
