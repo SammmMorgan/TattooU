@@ -69,7 +69,7 @@
       </div>
     </div>
     <div>
-      <span @click="getMoreImages()" class="text-center text-primary fs-3" type="button">Load more Tats</span>
+      <select v-model="pageNum.num" class="text-center text-primary fs-3" type="button">Load more Tats</select>
     </div>
   </div>
 
@@ -119,7 +119,8 @@ import { logger } from '../utils/Logger.js';
 import { useRoute, useRouter } from 'vue-router';
 export default {
   setup() {
-    const searchQuery = ref({})
+    const searchQuery = ref({ name: '' })
+    const pageNum = ref({ num: '' })
     const route = useRoute()
     const router = useRouter()
     const editableCollectionData = ref({ title: '', coverImg: '' })
@@ -134,13 +135,22 @@ export default {
         Pop.error(error)
       }
     }
+    async function getMoreImages() {
+      try {
+        await tattoosService.getMoreTats(pageNum)
+      } catch (error) {
+        Pop.error(error)
+      }
+    }
+
+
     watch(() => route.query, () => {
       getAllTattoos(route.query)
     }, { immediate: true })
 
-
-
-
+    watch(() => AppState.currentPage, () => {
+      getMoreImages()
+    }, { immediate: true })
 
     return {
       async searchImages() {
@@ -150,19 +160,12 @@ export default {
           Pop.error(error)
         }
       },
+      pageNum,
       searchQuery,
       editableCollectionData,
       tattoos: computed(() => AppState.tattoos),
       likedImage: computed(() => AppState.likedImage),
 
-      async getMoreImages() {
-        try {
-          const pageNum = parseInt(route.query.page) || 1
-          router.push({ query: { ...route.query, page: pageNum + 1 } })
-        } catch (error) {
-          Pop.error(error)
-        }
-      },
 
       async createCollection(image) {
         logger.log(image)
@@ -173,11 +176,6 @@ export default {
           Pop.error(error)
         }
       },
-
-      changePage(pageNumber) {
-        logger.log('page', pageNumber)
-      }
-
 
     }
   },

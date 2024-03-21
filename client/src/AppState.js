@@ -13,6 +13,8 @@ export const AppState = reactive({
 
   collections: [],
 
+  currentPage: 1,
+
   total: 0,
   /** @type {Tattoo[]} */
   likedImage: null
