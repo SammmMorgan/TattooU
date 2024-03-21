@@ -12,6 +12,7 @@ export class AccountController extends BaseController {
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getUserAccount)
       .put('', this.editUserAccount)
+      // TODO write /collections endpoint to hit, that only returns the logged in users collections
       .get('/likes', this.getAccountCollections)
       .post('/likes', this.createCollection)
   }
