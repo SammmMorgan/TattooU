@@ -6,13 +6,14 @@ import { api } from "./AxiosService"
 
 class CollectionService {
     async createCollection(collectionData, image) {
-        logger.log(collectionData, 'new collection data')
+        // logger.log(collectionData, 'new collection data')
         const response = await api.post('api/collections', collectionData)
-        logger.log('CREATED COLLECTION', response.data)
+        // logger.log('CREATED COLLECTION', response.data)
         const newCollection = new Collection(response.data)
-        logger.log(newCollection, 'new collection pre-push')
+        // logger.log(newCollection, 'new collection pre-push')
         newCollection.likedImages.push(image)
-        logger.log(newCollection, 'new collection')
+        AppState.collections.push(newCollection)
+        logger.log(AppState.collections, 'collections')
         return newCollection
 
     }
