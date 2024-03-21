@@ -11,7 +11,7 @@ class CollectionService {
         logger.log('CREATED COLLECTION', response.data)
         const newCollection = new Collection(response.data)
         logger.log(newCollection, 'new collection pre-push')
-        newCollection.likedImages.push(image)
+        newCollection.likedImages.push(likedImage)
         logger.log(newCollection, 'new collection')
         return newCollection
 
