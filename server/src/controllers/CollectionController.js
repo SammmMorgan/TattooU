@@ -20,18 +20,18 @@ export class CollectionController extends BaseController {
   * @param {import("express").Request} request
   * @param {import("express").Response} response
   * @param {import("express").NextFunction} next
-  */
-    async createCollection(request, response, next) {
-        try {
-            const data = request.body
-            // @ts-ignore
-            data.creatorId = request.userInfo.id
-            const collection = await collectionService.createCollection(data)
-            response.send(collection)
-        } catch (error) {
-            next(error)
-        }
-    }
+//   */
+    //     async createCollection(request, response, next) {
+    //         try {
+    //             const data = request.body
+    //             // @ts-ignore
+    //             data.creatorId = request.userInfo.id
+    //             const collection = await collectionService.createCollection(data)
+    //             response.send(collection)
+    //         } catch (error) {
+    //             next(error)
+    //         }
+    //     }
 
     /**
   * Sends all values back to the client
