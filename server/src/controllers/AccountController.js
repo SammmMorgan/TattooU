@@ -13,8 +13,9 @@ export class AccountController extends BaseController {
       .get('', this.getUserAccount)
       .put('', this.editUserAccount)
       // TODO write /collections endpoint to hit, that only returns the logged in users collections
-      .get('/likes', this.getAccountCollections)
-      .post('/likes', this.createCollection)
+      .get(`/:accountId/collections`, this.getAccountCollections)
+      .post(`/:accountId/collections`, this.createCollection)
+      .post(`/:collectionId`)
   }
 
   async getUserAccount(req, res, next) {
@@ -46,7 +47,6 @@ export class AccountController extends BaseController {
       next(error)
     }
   }
-
   async createCollection(request, response, next) {
     try {
       const data = request.body
@@ -54,6 +54,16 @@ export class AccountController extends BaseController {
       data.creatorId = request.userInfo.id
       const collection = await collectionService.createCollection(data)
       response.send(collection)
+    } catch (error) {
+      next(error)
+    }
+  }
+  async addToCollection(request, response, next) {
+    try {
+      const data = request.body
+      data.collectionId = request.collection.id
+      const pictureToAdd = await collectionService.addToCollection(data)
+      response.send(pictureToAdd)
     } catch (error) {
       next(error)
     }
