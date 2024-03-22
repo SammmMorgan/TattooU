@@ -31,3 +31,9 @@ export const TattooSchema = new Schema({
         toJSON: { virtuals: true }
     }
 )
+
+export class TattooQuery {
+    constructor(queryObject) {
+        this.name = new RegExp(queryObject.name, 'ig')
+    }
+}

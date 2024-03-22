@@ -9,53 +9,34 @@ export class CollectionController extends BaseController {
             .get('', this.getAllCollections)
             .get('/:collectionId', this.getCollectionById)
             .use(Auth0Provider.getAuthorizedUserInfo)
-            .post('', this.createCollection)
             .put('/:collectionId', this.updateCollection)
             .delete('/:collectionId', this.deleteCollection)
     }
-    
-     /**
-   * Sends all values back to the client
-   * @param {import("express").Request} request
-   * @param {import("express").Response} response
-   * @param {import("express").NextFunction} next
-   */
-    async createCollection(request, response, next) {
-        try {
-            const data = request.body
-            // @ts-ignore
-            data.creatorId = request.userInfo.id
-            const collection = await collectionService.createCollection(data)
-            response.send(collection)
-        } catch (error) {
-            next(error)
-        }
-    }
-    
-     /**
-   * Sends all values back to the client
-   * @param {import("express").Request} request
-   * @param {import("express").Response} response
-   * @param {import("express").NextFunction} next
-   */
-  
-     async getAllCollections(request, response, next) {
+
+    /**
+  * Sends all values back to the client
+  * @param {import("express").Request} request
+  * @param {import("express").Response} response
+  * @param {import("express").NextFunction} next
+  */
+
+    async getAllCollections(request, response, next) {
         try {
             const collections = await collectionService.getAllCollections()
             response.send(collections)
         } catch (error) {
             next(error)
         }
-     }
-     
-      /**
-   * Sends all values back to the client
-   * @param {import("express").Request} request
-   * @param {import("express").Response} response
-   * @param {import("express").NextFunction} next
-   */
-     
-     async getCollectionById(request, response, next) {
+    }
+
+    /**
+ * Sends all values back to the client
+ * @param {import("express").Request} request
+ * @param {import("express").Response} response
+ * @param {import("express").NextFunction} next
+ */
+
+    async getCollectionById(request, response, next) {
         try {
             const id = request.params.collectionId
             const collection = await collectionService.getCollectionById(id)
@@ -63,16 +44,16 @@ export class CollectionController extends BaseController {
         } catch (error) {
             next(error)
         }
-     }
-     
-        /**
-   * Sends all values back to the client
-   * @param {import("express").Request} request
-   * @param {import("express").Response} response
-   * @param {import("express").NextFunction} next
-   */
-     
-     async updateCollection(request, response, next) {
+    }
+
+    /**
+* Sends all values back to the client
+* @param {import("express").Request} request
+* @param {import("express").Response} response
+* @param {import("express").NextFunction} next
+*/
+
+    async updateCollection(request, response, next) {
         try {
             const id = request.params.collectionId
             const data = request.body
@@ -83,16 +64,16 @@ export class CollectionController extends BaseController {
         } catch (error) {
             next(error)
         }
-     }
-     
-     
+    }
+
+
     /**
    * Sends all values back to the client
    * @param {import("express").Request} request
    * @param {import("express").Response} response
    * @param {import("express").NextFunction} next
    */
-     async deleteCollection(request, response, next) {
+    async deleteCollection(request, response, next) {
         try {
             const id = request.params.collectionId
             // @ts-ignore
@@ -102,5 +83,6 @@ export class CollectionController extends BaseController {
         } catch (error) {
             next(error)
         }
-     }
+    }
+
 }

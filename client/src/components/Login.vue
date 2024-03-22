@@ -1,31 +1,34 @@
 <template>
 
-  <button class="btn selectable text-success lighten-30 text-uppercase my-2 my-lg-0" @click="login"
-    v-if="!user.isAuthenticated">
-    Login
-  </button>
-  <div v-else>
-    <div class="dropdown my-2 pt-5 pe-5 my-lg-0 account-pic">
-      <div type="button" class=" selectable no-select text-end  " data-bs-toggle="dropdown" aria-expanded="false">
-        <div v-if="account.picture || user.picture">
-          <img :src="account.picture || user.picture" alt="account photo" class="rounded fs-1 " />
+  <span class="navbar-text">
+    <button class="btn selectable btn-success lighten-30 text-uppercase my-2 my-lg-0" @click="login"
+      v-if="!user.isAuthenticated">
+      Login
+    </button>
+    <div v-else>
+      <div class="dropdown my-2 my-lg-0">
+        <div type="button" class="" data-bs-toggle="dropdown" aria-expanded="false">
+          <div v-if="account.picture || user.picture">
+            <img :src="account.picture || user.picture" alt="account photo" height="80"
+              class="rounded border-0 selectable no-select" />
+          </div>
         </div>
-      </div>
-      <div class="dropdown-menu dropdown-menu-sm-end dropdown-menu-start p-0" aria-labelledby="authDropdown">
-        <div class="list-group">
-          <router-link :to="{ name: 'Account' }">
-            <div class="list-group-item dropdown-item list-group-item-action">
-              Manage Account
+        <div class="dropdown-menu dropdown-menu-sm-end dropdown-menu-start p-0" aria-labelledby="authDropdown">
+          <div class="list-group">
+            <router-link :to="{ name: 'Account' }">
+              <div class="list-group-item dropdown-item list-group-item-action">
+                Manage Account
+              </div>
+            </router-link>
+            <div class="list-group-item dropdown-item list-group-item-action text-danger selectable" @click="logout">
+              <i class="mdi mdi-logout"></i>
+              logout
             </div>
-          </router-link>
-          <div class="list-group-item dropdown-item list-group-item-action text-danger selectable" @click="logout">
-            <i class="mdi mdi-logout"></i>
-            logout
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </span>
 
 </template>
 
@@ -49,8 +52,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.account-picture {
-  text-align: end;
-}
-</style>
+<style lang="scss" scoped></style>

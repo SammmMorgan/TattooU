@@ -2,16 +2,20 @@ import { Auth0Provider } from '@bcwdev/auth0provider'
 import { accountService } from '../services/AccountService'
 import BaseController from '../utils/BaseController'
 import { collectionService } from '../services/CollectionService.js'
-import { likeService } from '../services/LikeService.js'
+import { likedImageService } from '../services/LikedImageService.js'
+import { logger } from '../utils/Logger.js'
 
 export class AccountController extends BaseController {
   constructor() {
-    super('account')
+    super('api/account')
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getUserAccount)
       .put('', this.editUserAccount)
-      .get('/likes', this.getAccountCollections)
+      // TODO write /collections endpoint to hit, that only returns the logged in users collections
+      .get(`/:accountId/collections`, this.getAccountCollections)
+      .post(`/:accountId/collections`, this.createCollection)
+      .post(`/:collectionId`)
   }
 
   async getUserAccount(req, res, next) {
@@ -23,7 +27,7 @@ export class AccountController extends BaseController {
     }
   }
 
-   async editUserAccount(req, res, next) {
+  async editUserAccount(req, res, next) {
     try {
       const accountId = req.userInfo.id
       req.body.id = accountId
@@ -33,15 +37,36 @@ export class AccountController extends BaseController {
       next(error)
     }
   }
-  
+
   async getAccountCollections(request, response, next) {
     try {
-        const userId = request.userInfo.id
-        const collections = await likeService.getAccountCollections(userId)
-        response.send(collections)
+      const userId = request.userInfo.accountId
+      const collections = await likedImageService.getAccountCollections(userId)
+
+      response.send(collections)
     } catch (error) {
-        next(error)
+      next(error)
     }
   }
-  
+  async createCollection(request, response, next) {
+    try {
+      const data = request.body
+      // @ts-ignore
+      data.creatorId = request.userInfo.accountId
+      const collection = await collectionService.createCollection(data)
+      response.send(collection)
+    } catch (error) {
+      next(error)
+    }
+  }
+  async addToCollection(request, response, next) {
+    try {
+      const data = request.body
+      data.collectionId = request.collection.id
+      const pictureToAdd = await collectionService.addToCollection(data)
+      response.send(pictureToAdd)
+    } catch (error) {
+      next(error)
+    }
+  }
 }
