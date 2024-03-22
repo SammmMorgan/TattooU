@@ -5,9 +5,9 @@ import { logger } from "../utils/Logger"
 import { api } from "./AxiosService"
 
 class CollectionService {
-    async createCollection(collectionData, image) {
+    async createCollection(collectionData, image, accountId) {
         // logger.log(collectionData, 'new collection data')
-        const response = await api.post('api/collections', collectionData)
+        const response = await api.post(`api/account/${accountId}/collections`, collectionData)
         // logger.log('CREATED COLLECTION', response.data)
         const newCollection = new Collection(response.data)
         // logger.log(newCollection, 'new collection pre-push')
