@@ -35,8 +35,6 @@
   </div> -->
 
 
-
-
   <section class="container-fluid home-background">
     <div class="text-end p-5">
       <Login />
