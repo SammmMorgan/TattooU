@@ -7,7 +7,7 @@ import { logger } from '../utils/Logger.js'
 
 export class AccountController extends BaseController {
   constructor() {
-    super('account')
+    super('api/account')
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getUserAccount)
@@ -42,6 +42,7 @@ export class AccountController extends BaseController {
     try {
       const userId = request.userInfo.id
       const collections = await likedImageService.getAccountCollections(userId)
+
       response.send(collections)
     } catch (error) {
       next(error)
