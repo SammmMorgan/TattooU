@@ -1,8 +1,8 @@
 <template>
-  <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
+  <!--   <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
     <div class="d-flex flex-column text-center">
-      <h1>🏡</h1>
-      <!-- <img alt="logo" src="../assets/img/cw-logo.png" height="45" /> -->
+      <h1>> Back</h1>
+    
     </div>
   </router-link>
   <div class="about text-center">
@@ -44,19 +44,34 @@
 
         </form>
       </div>
-    </section>
+    </section> -->
 
-    <div class="container">
-      <section class="row justify-content-evenly" v-for="collection in collections" :key="collection.id">
-        <div class="col-4">
-          <img :src="collection.coverImg" :alt="collection.title">
-        </div>
-      </section>
+  <section class="container-fluid">
+    <div class="row">
+      <div class="col-12 position-relative p-0">
+        <img :src="account.coverImg" alt="" style="width: 100%; height: 40vh; object-fit: cover;">
+        <img :src="account.picture" alt="" class="profile-icon">
+        <span class="mdi mdi-cog fs-1 setting"></span>
+        <router-link :to="{ name: 'Home' }" style="height: 0;"><span
+            class="mdi mdi-arrow-left-bold fs-1 back"></span></router-link>
+      </div>
     </div>
+  </section>
 
-    {{ collections }}
 
+
+
+
+  <div class="container">
+    <section class="row justify-content-evenly" v-for="collection in collections" :key="collection.id">
+      <div class="col-4">
+        <img :src="collection.coverImg" :alt="collection.title">
+      </div>
+    </section>
   </div>
+
+  {{ collections }}
+
 </template>
 
 <script>
@@ -103,7 +118,24 @@ export default {
 </script>
 
 <style scoped>
-img {
-  max-width: 100px;
+.profile-icon {
+  position: absolute;
+  top: 290px;
+  left: 50%;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+}
+
+.setting {
+  position: absolute;
+  top: 0;
+  right: 20px;
+}
+
+.back {
+  position: absolute;
+  top: 0;
+  left: 20px;
 }
 </style>
