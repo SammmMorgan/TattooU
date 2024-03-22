@@ -34,94 +34,80 @@
     </section>
   </div> -->
 
-  <section class="container-fluid">
-    <div class="row justify-content-center align-items-center rowH">
-      <div class="col-10 text-center">
-        <div class="spinner-border text-white" role="status">
-          <span class="visually-hidden">Loading...</span>
-        </div>
+
+
+
+  <section class="container-fluid home-background">
+    <div class="text-end p-5">
+      <Login />
+    </div>
+    <div class="row">
+      <img src="/img/ff5fa50773f34d47537a05ee1d376bf8.png" alt="Logo" class="logo">
+    </div>
+    <div class="bg-black"></div>
+  </section>
+
+  <section class="container-fluid black py-5">
+    <div class="row align-items-center justify-content-evenly text-center">
+      <div class="col-md-5">
+        <img
+          src="https://images.unsplash.com/photo-1605647533135-51b5906087d0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="" style="height: 40vh;">
+      </div>
+      <div class="col-md-5 text-center">
+        <h1 style="font-size: 64px;" class="font">Find the perfect tattoo for you!</h1>
       </div>
     </div>
   </section>
 
 
 
-  <!-- REVIEW DO NOT REMOVE | animation for beginning-->
-  <div class="screen">
 
-
-    <section class="container-fluid home-background">
-      <div class="text-end p-5">
-        <Login />
+  <div class="container-fluid black pt-5 text-center py-5">
+    <form @submit.prevent="searchImages()" class="d-flex w-100 justify-content-center py-5 text-white" role="search">
+      <input class="search-input me-2 w-50" type="search" placeholder="Search" v-model="searchQuery.name"
+        aria-label="Search">
+      <button class="search-button" type="submit">Search</button>
+    </form>
+    <div class="row">
+      <div v-for="tattoo in tattoos" :key="tattoo.id" class="col-md-3">
+        <TattooCardComponent :tattoo="tattoo" />
       </div>
-      <div class="row">
-        <img src="/img/ff5fa50773f34d47537a05ee1d376bf8.png" alt="Logo" class="logo">
-      </div>
-      <div class="bg-black"></div>
-    </section>
-
-    <section class="container-fluid black py-5">
-      <div class="row align-items-center justify-content-evenly text-center">
-        <div class="col-md-5">
-          <img
-            src="https://images.unsplash.com/photo-1605647533135-51b5906087d0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="" style="height: 40vh;">
-        </div>
-        <div class="col-md-5 text-center">
-          <h1 style="font-size: 64px;" class="font">Find the perfect tattoo for you!</h1>
-        </div>
-      </div>
-    </section>
-
-
-
-
-    <div class="container-fluid black pt-5 text-center py-5">
-      <form @submit.prevent="searchImages()" class="d-flex w-100 justify-content-center py-5 text-white" role="search">
-        <input class="search-input me-2 w-50" type="search" placeholder="Search" v-model="searchQuery.name"
-          aria-label="Search">
-        <button class="search-button" type="submit">Search</button>
-      </form>
-      <div class="row">
-        <div v-for="tattoo in tattoos" :key="tattoo.id" class="col-md-3">
-          <TattooCardComponent :tattoo="tattoo" />
-        </div>
-      </div>
-      <button class="btn" @click="this.getMoreImages()">
-        <span class="text-center text-primary fs-3" type="button">Load more Tats</span>
-      </button>
     </div>
+    <button class="btn" @click="this.getMoreImages()">
+      <span class="text-center text-primary fs-3" type="button">Load more Tats</span>
+    </button>
+  </div>
 
-    <div class="modal fade z-3" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-      aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <h1>Create a collection</h1>
+  <div class="modal fade z-3" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h1>Create a collection</h1>
 
-            <form @submit.prevent="createCollection(likedImage)">
-              <div class="mb-3">
-                <input v-model="editableCollectionData.title" type="text" class="form-control" placeholder="Name..">
-              </div>
-              <div class="mb-3">
-                <input v-model="editableCollectionData.coverImg" type="text" class="form-control"
-                  placeholder="Cover Image Url...">
-              </div>
-              <div class="mb-3 text-end">
-                <button type="submit" class="btn btn-success">Create</button>
-              </div>
-            </form>
+          <form @submit.prevent="createCollection(likedImage)">
+            <div class="mb-3">
+              <input v-model="editableCollectionData.title" type="text" class="form-control" placeholder="Name..">
+            </div>
+            <div class="mb-3">
+              <input v-model="editableCollectionData.coverImg" type="text" class="form-control"
+                placeholder="Cover Image Url...">
+            </div>
+            <div class="mb-3 text-end">
+              <button type="submit" class="btn btn-success">Create</button>
+            </div>
+          </form>
 
-            <h1 class="my-3">Add to an existing collection</h1>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Understood</button>
-          </div>
+          <h1 class="my-3">Add to an existing collection</h1>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Understood</button>
         </div>
       </div>
     </div>
@@ -200,44 +186,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.rowH {
-  padding-top: 80vh;
-  height: 100vh;
-  background-color: black;
-  animation: FadeOut 2s forwards ease-in;
-  animation-delay: 2s;
-  animation-iteration-count: 1;
-}
-
-@keyframes FadeOut {
-  0% {
-    background-color: black;
-  }
-
-  100% {
-    display: none;
-  }
-}
-
-.screen {
-  animation: FadeIn 2s forwards ease-in;
-  animation-delay: 0s;
-  animation-iteration-count: 1;
-  z-index: 999;
-  background-color: black;
-}
-
-@keyframes FadeIn {
-  0% {
-    opacity: 0;
-
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
 .home-background {
   user-select: none;
   background-image: url(/img/1b63c07362e3fbafb0425f6bfaf76014.png);
