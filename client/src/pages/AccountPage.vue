@@ -94,6 +94,7 @@ import { AppState } from '../AppState';
 import { accountService } from '../services/AccountService';
 import Pop from '../utils/Pop';
 import { collectionService } from '../services/CollectionService.js';
+import { logger } from '../utils/Logger.js';
 
 export default {
   setup() {
@@ -101,11 +102,12 @@ export default {
     const editableAccountData = ref({})
     watch(account, () => { editableAccountData.value = { ...account.value } }, { immediate: true })
 
-    onMounted(() => { getCollectionsByAccountId() })
+    onMounted(() => { getCollectionsByAccountId(account.value.id) })
 
-    async function getCollectionsByAccountId(accountId) {
+    async function getCollectionsByAccountId(id) {
       try {
-        await collectionService.getCollectionsByAccountId(accountId)
+        await collectionService.getCollectionsByAccountId(id)
+        logger.log('Account', id)
       } catch (error) {
         Pop.error(error)
       }
@@ -114,9 +116,8 @@ export default {
 
     return {
       editableAccountData,
-      account,
       collections: computed(() => AppState.collections),
-      accountId: computed(() => AppState.account.id),
+      account: computed(() => AppState.account),
 
       async updateAccount() {
         try {
