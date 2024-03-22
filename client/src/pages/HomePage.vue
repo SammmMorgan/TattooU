@@ -44,15 +44,6 @@
     </div>
     <div class="bg-black"></div>
   </section>
-  <section class="container-fluid home-background">
-    <div class="text-end p-5">
-      <Login />
-    </div>
-    <div class="row">
-      <img src="/img/ff5fa50773f34d47537a05ee1d376bf8.png" alt="Logo" class="logo">
-    </div>
-    <div class="bg-black"></div>
-  </section>
 
   <section class="container-fluid black py-5">
     <div class="row align-items-center justify-content-evenly text-center">
@@ -67,20 +58,6 @@
     </div>
   </section>
 
-
-
-  <section class="container-fluid black py-5">
-    <div class="row align-items-center justify-content-evenly text-center">
-      <div class="col-md-5">
-        <img
-          src="https://images.unsplash.com/photo-1605647533135-51b5906087d0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt="" style="height: 40vh;">
-      </div>
-      <div class="col-md-5 text-center">
-        <h1 style="font-size: 64px;" class="font">Find the perfect tattoo for you!</h1>
-      </div>
-    </div>
-  </section>
 
 
 
