@@ -40,7 +40,7 @@ export class AccountController extends BaseController {
 
   async getAccountCollections(request, response, next) {
     try {
-      const userId = request.userInfo.id
+      const userId = request.userInfo.accountId
       const collections = await likedImageService.getAccountCollections(userId)
 
       response.send(collections)
@@ -52,7 +52,7 @@ export class AccountController extends BaseController {
     try {
       const data = request.body
       // @ts-ignore
-      data.creatorId = request.userInfo.id
+      data.creatorId = request.userInfo.accountId
       const collection = await collectionService.createCollection(data)
       response.send(collection)
     } catch (error) {
