@@ -34,7 +34,7 @@
     </section>
   </div> -->
 
-  <section class="container-fluid">
+  <!-- <section class="container-fluid">
     <div class="row justify-content-center align-items-center rowH">
       <div class="col-10 text-center">
         <div class="spinner-border text-white" role="status">
@@ -42,12 +42,12 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
 
 
   <!-- REVIEW DO NOT REMOVE | animation for beginning-->
-  <div class="screen">
+  <div class="">
 
 
     <section class="container-fluid home-background">
