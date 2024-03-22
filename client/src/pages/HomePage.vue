@@ -72,7 +72,7 @@
         <TattooCardComponent :tattoo="tattoo" />
       </div>
     </div>
-    <button class="btn" @click="pageNum.num++">
+    <button class="btn" @click="this.getMoreImages()">
       <span class="text-center text-primary fs-3" type="button">Load more Tats</span>
     </button>
   </div>
@@ -124,7 +124,6 @@ import { useRoute, useRouter } from 'vue-router';
 export default {
   setup() {
     const searchQuery = ref({ name: '' })
-    const pageNum = ref({ num: 1 })
     const route = useRoute()
     const router = useRouter()
     const editableCollectionData = ref({ title: '', coverImg: '' })
@@ -139,24 +138,12 @@ export default {
         Pop.error(error)
       }
     }
-    async function getMoreImages() {
-      try {
-        AppState.currentPage = pageNum.value.num
-        logger.log(AppState.currentPage)
-        await tattoosService.getMoreTats({ pageNum })
-      } catch (error) {
-        Pop.error(error)
-      }
-    }
 
 
     watch(() => route.query, () => {
       getAllTattoos(route.query)
     }, { immediate: true })
 
-    watch(() => pageNum, () => {
-      getMoreImages()
-    }, { immediate: true })
 
     return {
       async searchImages() {
@@ -166,12 +153,12 @@ export default {
           Pop.error(error)
         }
       },
-      pageNum,
       searchQuery,
       editableCollectionData,
       tattoos: computed(() => AppState.tattoos),
       likedImage: computed(() => AppState.likedImage),
       accountId: computed(() => AppState.account.id),
+      setPageNum: computed(() => AppState.currentPage),
 
 
       async createCollection(image, accountId) {
@@ -184,6 +171,14 @@ export default {
           Pop.error(error)
         }
       },
+    }
+  },
+  async getMoreImages() {
+    try {
+      let newPage = this.setPageNum++
+      await tattoosService.getMoreTats({ newPage })
+    } catch (error) {
+      Pop.error(error)
     }
   },
   components: { TattooCardComponent }
