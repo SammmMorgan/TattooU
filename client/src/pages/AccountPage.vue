@@ -75,23 +75,35 @@
 </template>
 
 <script>
-import { computed, ref, watch } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { AppState } from '../AppState';
 import { accountService } from '../services/AccountService';
 import Pop from '../utils/Pop';
+import { collectionService } from '../services/CollectionService.js';
 
 export default {
   setup() {
     const account = computed(() => AppState.account)
     const editableAccountData = ref({})
-
     watch(account, () => { editableAccountData.value = { ...account.value } }, { immediate: true })
+
+    onMounted(() => { getCollectionsByAccountId() })
+
+    async function getCollectionsByAccountId() {
+      try {
+        await collectionService.getCollectionsByAccountId()
+      } catch (error) {
+        Pop.error(error)
+      }
+    }
 
 
     return {
       editableAccountData,
       account,
       collections: computed(() => AppState.collections),
+      accountId: computed(() => AppState.account.id),
+
       async updateAccount() {
         try {
           await accountService.updateAccount(editableAccountData.value)
