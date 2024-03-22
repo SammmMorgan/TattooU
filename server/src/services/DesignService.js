@@ -26,7 +26,6 @@ class DesignService {
             .limit(designLimit)
             .skip(skipNumber)
 
-
         const total = await dbContext.Design.countDocuments(queryParam)
 
         const response = {

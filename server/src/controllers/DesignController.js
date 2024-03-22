@@ -7,6 +7,7 @@ export class DesignController extends BaseController {
         this.router
             .get('', this.getAllDesigns)
             .get('/:designId', this.getDesignById)
+            .get('/:pageNum', this.newPageOfDesigns)
     }
 
     /**
@@ -25,6 +26,13 @@ export class DesignController extends BaseController {
         }
     }
 
+    async newPageOfDesigns(request, response, next) {
+        try {
+
+        } catch (error) {
+
+        }
+    }
     /**
   * Sends all values back to the client
   * @param {import("express").Request} request

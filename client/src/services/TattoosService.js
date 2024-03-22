@@ -7,7 +7,8 @@ class TattoosService {
 
   async getMoreTats(pageNum) {
     const response = await api.get('api/designs', { params: pageNum })
-    AppState.currentPage = pageNum
+    logger.log(pageNum)
+    AppState.currentPage++
     logger.log(response.data)
     // AppState.tattoos.push(new Tattoo(response.data))
 

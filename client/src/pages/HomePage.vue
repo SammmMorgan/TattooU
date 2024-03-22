@@ -72,7 +72,7 @@
         <TattooCardComponent :tattoo="tattoo" />
       </div>
     </div>
-    <button class="btn" @click="this.getMoreImages()">
+    <button class="btn" @click="this.getMoreImages(setPageNum)">
       <span class="text-center text-primary fs-3" type="button">Load more Tats</span>
     </button>
   </div>
@@ -171,14 +171,14 @@ export default {
           Pop.error(error)
         }
       },
-    }
-  },
-  async getMoreImages() {
-    try {
-      let newPage = this.setPageNum++
-      await tattoosService.getMoreTats({ newPage })
-    } catch (error) {
-      Pop.error(error)
+      async getMoreImages(setPageNum) {
+        try {
+          let newPage = setPageNum++
+          await tattoosService.getMoreTats({ newPage })
+        } catch (error) {
+          Pop.error(error)
+        }
+      },
     }
   },
   components: { TattooCardComponent }
