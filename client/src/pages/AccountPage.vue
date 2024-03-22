@@ -1,5 +1,5 @@
 <template>
-  <!--   <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
+  <!-- <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
     <div class="d-flex flex-column text-center">
       <h1>> Back</h1>
     
@@ -11,8 +11,25 @@
     <p>{{ account.bio }}</p>
     <p>{{ account.email }}</p>
   </div>
-  <div class="container-fluid">
-    <section class="row">
+  <div class="container-fluid"> -->
+  <section class="row">
+  </section>
+
+  <section class="container-fluid">
+    <div class="row">
+      <div class="col-12 position-relative p-0">
+        <img :src="account.coverImg" alt="" style="width: 100%; height: 40vh; object-fit: cover;">
+        <img :src="account.picture" alt="" class="profile-icon">
+        <span class="mdi mdi-cog fs-1 setting"></span>
+        <router-link :to="{ name: 'Home' }" style="height: 0;"><span
+            class="mdi mdi-arrow-left-bold fs-1 back"></span></router-link>
+      </div>
+
+
+
+
+
+
       <div class="col-6 m-auto">
 
         <form @submit.prevent="updateAccount()">
@@ -44,17 +61,14 @@
 
         </form>
       </div>
-    </section> -->
 
-  <section class="container-fluid">
-    <div class="row">
-      <div class="col-12 position-relative p-0">
-        <img :src="account.coverImg" alt="" style="width: 100%; height: 40vh; object-fit: cover;">
-        <img :src="account.picture" alt="" class="profile-icon">
-        <span class="mdi mdi-cog fs-1 setting"></span>
-        <router-link :to="{ name: 'Home' }" style="height: 0;"><span
-            class="mdi mdi-arrow-left-bold fs-1 back"></span></router-link>
-      </div>
+
+
+
+
+
+
+
     </div>
   </section>
 
