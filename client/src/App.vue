@@ -6,6 +6,10 @@
     <router-view />
   </main>
   <!-- <footer class="bg-dark text-light">
+  <main>
+    <router-view />
+  </main>
+  <!-- <footer class="bg-dark text-light">
     Made with 💖 by CodeWorks
   </footer> -->
 </template>
@@ -21,7 +25,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar }
+  components: {}
 }
 </script>
 <style lang="scss">

@@ -19,10 +19,11 @@ class CollectionService {
     }
 
 
-    async getCollections() {
-        const response = await api.get('api/collections')
+    async getCollectionsByAccountId(accountId) {
+        const response = await api.get(`api/account/${accountId}/collections`)
         logger.log('getting collections', response.data)
         AppState.collections = response.data.map(collection => new Collection(collection))
+        logger.log('appstate collections', AppState.collections)
     }
 
     async deleteCollection(collectionId) {

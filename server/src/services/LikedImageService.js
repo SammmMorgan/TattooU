@@ -8,7 +8,7 @@ class LikedImageService {
   //   return newCollection
   // }
   async getAccountCollections(userId) {
-    const collections = await dbContext.LikedImages.find({ accountId: userId })
+    const collections = await dbContext.Collections.find({ accountId: userId })
       .populate({
         path: 'collection',
         populate: {
