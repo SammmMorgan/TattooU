@@ -74,9 +74,9 @@ export default {
 
     onMounted(() => { getCollectionsByAccountId() })
 
-    async function getCollectionsByAccountId() {
+    async function getCollectionsByAccountId(accountId) {
       try {
-        await collectionService.getCollectionsByAccountId()
+        await collectionService.getCollectionsByAccountId(accountId)
       } catch (error) {
         Pop.error(error)
       }

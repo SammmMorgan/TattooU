@@ -23,6 +23,7 @@ class CollectionService {
         const response = await api.get(`api/account/${accountId}/collections`)
         logger.log('getting collections', response.data)
         AppState.collections = response.data.map(collection => new Collection(collection))
+        logger.log('appstate collections', AppState.collections)
     }
 
     async deleteCollection(collectionId) {
