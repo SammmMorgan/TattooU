@@ -206,7 +206,7 @@ export default {
   padding-top: 80vh;
   height: 100vh;
   background-color: black;
-  animation: FadeOut 0.5s forwards ease-out;
+  animation: FadeOut 2s forwards ease-in;
   animation-delay: 2s;
   animation-iteration-count: 1;
 }
@@ -217,16 +217,16 @@ export default {
   }
 
   100% {
-    background-color: white;
-    height: 0;
     display: none;
   }
 }
 
 .screen {
-  animation: FadeIn 2s forwards ease-out;
+  animation: FadeIn 2s forwards ease-in;
   animation-delay: 0s;
   animation-iteration-count: 1;
+  z-index: 999;
+  background-color: black;
 }
 
 @keyframes FadeIn {
@@ -315,7 +315,7 @@ export default {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  z-index: 999;
+  z-index: 2;
 }
 
 
