@@ -88,7 +88,7 @@
         <div class="modal-body">
           <h1>Create a collection</h1>
 
-          <form @submit.prevent="createCollection(likedImage)">
+          <form @submit.prevent="createCollection(likedImage, accountId)">
             <div class="mb-3">
               <input v-model="editableCollectionData.title" type="text" class="form-control" placeholder="Name..">
             </div>
@@ -171,12 +171,14 @@ export default {
       editableCollectionData,
       tattoos: computed(() => AppState.tattoos),
       likedImage: computed(() => AppState.likedImage),
+      accountId: computed(() => AppState.account.id),
 
 
-      async createCollection(image) {
+      async createCollection(image, accountId) {
         logger.log(image)
         try {
-          const newCollection = await collectionService.createCollection(editableCollectionData.value, image)
+
+          const newCollection = await collectionService.createCollection(editableCollectionData.value, image, accountId)
           editableCollectionData.value = { title: '', coverImg: '' }
         } catch (error) {
           Pop.error(error)
