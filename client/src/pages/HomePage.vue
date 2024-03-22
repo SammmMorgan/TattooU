@@ -73,6 +73,9 @@
       </div>
     </section>
 
+
+
+
     <div class="container-fluid black pt-5 text-center py-5">
       <form @submit.prevent="searchImages()" class="d-flex w-100 justify-content-center py-5 text-white" role="search">
         <input class="search-input me-2 w-50" type="search" placeholder="Search" v-model="searchQuery.name"
@@ -89,7 +92,7 @@
       </button>
     </div>
 
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade z-3" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
       aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
         <div class="modal-content">
