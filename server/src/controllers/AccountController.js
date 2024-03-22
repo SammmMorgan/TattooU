@@ -42,6 +42,7 @@ export class AccountController extends BaseController {
     try {
       const userId = request.userInfo.id
       const collections = await likedImageService.getAccountCollections(userId)
+
       response.send(collections)
     } catch (error) {
       next(error)
