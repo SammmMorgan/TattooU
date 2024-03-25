@@ -14,7 +14,7 @@ class TattoosService {
 
   }
   async getAllTattoos(query) {
-    const response = await api.get('api/designs', { params: query })
+    const response = await api.get('api/designs')
     logger.log('getting tattoos', response.data)
     AppState.tattoos = response.data.designs.map(tattoo => new Tattoo(tattoo))
   }
@@ -26,5 +26,4 @@ class TattoosService {
   }
 
 }
-
 export const tattoosService = new TattoosService()

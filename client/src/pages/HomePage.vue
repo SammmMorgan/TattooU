@@ -128,12 +128,15 @@ export default {
     const route = useRoute()
     const router = useRouter()
     const editableCollectionData = ref({ title: '', coverImg: '' })
+
     onMounted(() => {
-      getAllTattoos()
-    })
-    async function getAllTattoos(query) {
+      getAllTattoos();
+    });
+
+    async function getAllTattoos() {
       try {
-        await tattoosService.getAllTattoos(query)
+        logger.log('is anything working?')
+        await tattoosService.getAllTattoos()
 
       } catch (error) {
         Pop.error(error)
@@ -141,9 +144,6 @@ export default {
     }
 
 
-    watch(() => route.query, () => {
-      getAllTattoos(route.query)
-    }, { immediate: true })
 
 
     return {
